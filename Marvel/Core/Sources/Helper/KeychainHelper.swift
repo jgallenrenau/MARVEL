@@ -1,9 +1,9 @@
 import Foundation
 import Security
 
-struct KeychainHelper {
+public struct KeychainHelper {
 
-    static func save(key: String, value: String) throws {
+    public static func save(key: String, value: String) throws {
         let data = value.data(using: .utf8)!
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
@@ -18,7 +18,7 @@ struct KeychainHelper {
         }
     }
 
-    static func retrieve(key: String) throws -> String {
+    public static func retrieve(key: String) throws -> String {
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrAccount as String: key,
@@ -35,7 +35,7 @@ struct KeychainHelper {
         return value
     }
 
-    static func delete(key: String) throws {
+    public static func delete(key: String) throws {
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrAccount as String: key

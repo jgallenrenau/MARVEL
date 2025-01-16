@@ -1,4 +1,5 @@
 import SwiftUI
+import Core
 
 @main
 struct MarvelApp: App {
