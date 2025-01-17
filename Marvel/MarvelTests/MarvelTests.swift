@@ -1,10 +1,3 @@
-//
-//  MarvelTests.swift
-//  MarvelTests
-//
-//  Created by Jordi Gallen Renau on 15/1/25.
-//
-
 import XCTest
 
 final class MarvelTests: XCTestCase {

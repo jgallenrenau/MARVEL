@@ -3,16 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		14664C232D39995300FFA4A6 /* MarvelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14664C222D39995300FFA4A6 /* MarvelTests.swift */; };
+		14A0B8712D38FA3000438F1E /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 14A0B8702D38FA3000438F1E /* Core */; };
 		14C014BD2D37E87C00B19E03 /* MarvelApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C014BC2D37E87C00B19E03 /* MarvelApp.swift */; };
 		14C014BF2D37E87C00B19E03 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C014BE2D37E87C00B19E03 /* ContentView.swift */; };
-		14C014C12D37E87C00B19E03 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C014C02D37E87C00B19E03 /* Item.swift */; };
 		14C014C32D37E88000B19E03 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14C014C22D37E88000B19E03 /* Assets.xcassets */; };
 		14C014C72D37E88000B19E03 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14C014C62D37E88000B19E03 /* Preview Assets.xcassets */; };
-		14C015202D37F29900B19E03 /* MarvelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C0151F2D37F29900B19E03 /* MarvelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,15 +26,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		14664C222D39995300FFA4A6 /* MarvelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelTests.swift; sourceTree = "<group>"; };
 		14C014B92D37E87C00B19E03 /* Marvel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Marvel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14C014BC2D37E87C00B19E03 /* MarvelApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelApp.swift; sourceTree = "<group>"; };
 		14C014BE2D37E87C00B19E03 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		14C014C02D37E87C00B19E03 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		14C014C22D37E88000B19E03 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		14C014C42D37E88000B19E03 /* Marvel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Marvel.entitlements; sourceTree = "<group>"; };
 		14C014C62D37E88000B19E03 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		14C0151D2D37F29900B19E03 /* MarvelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MarvelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		14C0151F2D37F29900B19E03 /* MarvelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelTests.swift; sourceTree = "<group>"; };
+		14C015262D37F9CE00B19E03 /* Core */ = {isa = PBXFileReference; lastKnownFileType = text; path = Core; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14A0B8712D38FA3000438F1E /* Core in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,12 +56,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		14A0B86C2D38F48400438F1E /* App */ = {
+			isa = PBXGroup;
+			children = (
+				14C014C42D37E88000B19E03 /* Marvel.entitlements */,
+				14C014C52D37E88000B19E03 /* Preview Content */,
+				14C014C22D37E88000B19E03 /* Assets.xcassets */,
+				14C014BC2D37E87C00B19E03 /* MarvelApp.swift */,
+				14C014BE2D37E87C00B19E03 /* ContentView.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		14A0B86F2D38FA3000438F1E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		14C014B02D37E87B00B19E03 = {
 			isa = PBXGroup;
 			children = (
 				14C014BB2D37E87C00B19E03 /* Marvel */,
 				14C0151E2D37F29900B19E03 /* MarvelTests */,
 				14C014BA2D37E87C00B19E03 /* Products */,
+				14A0B86F2D38FA3000438F1E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -76,12 +97,8 @@
 		14C014BB2D37E87C00B19E03 /* Marvel */ = {
 			isa = PBXGroup;
 			children = (
-				14C014BC2D37E87C00B19E03 /* MarvelApp.swift */,
-				14C014BE2D37E87C00B19E03 /* ContentView.swift */,
-				14C014C02D37E87C00B19E03 /* Item.swift */,
-				14C014C22D37E88000B19E03 /* Assets.xcassets */,
-				14C014C42D37E88000B19E03 /* Marvel.entitlements */,
-				14C014C52D37E88000B19E03 /* Preview Content */,
+				14A0B86C2D38F48400438F1E /* App */,
+				14C015262D37F9CE00B19E03 /* Core */,
 			);
 			path = Marvel;
 			sourceTree = "<group>";
@@ -97,7 +114,7 @@
 		14C0151E2D37F29900B19E03 /* MarvelTests */ = {
 			isa = PBXGroup;
 			children = (
-				14C0151F2D37F29900B19E03 /* MarvelTests.swift */,
+				14664C222D39995300FFA4A6 /* MarvelTests.swift */,
 			);
 			path = MarvelTests;
 			sourceTree = "<group>";
@@ -118,6 +135,9 @@
 			dependencies = (
 			);
 			name = Marvel;
+			packageProductDependencies = (
+				14A0B8702D38FA3000438F1E /* Core */,
+			);
 			productName = Marvel;
 			productReference = 14C014B92D37E87C00B19E03 /* Marvel.app */;
 			productType = "com.apple.product-type.application";
@@ -155,12 +175,13 @@
 					};
 					14C0151C2D37F29900B19E03 = {
 						CreatedOnToolsVersion = 15.2;
+						LastSwiftMigration = 1520;
 						TestTargetID = 14C014B82D37E87C00B19E03;
 					};
 				};
 			};
 			buildConfigurationList = 14C014B42D37E87B00B19E03 /* Build configuration list for PBXProject "Marvel" */;
-			compatibilityVersion = "Xcode 14.0";
+			compatibilityVersion = "Xcode 15.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -203,7 +224,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				14C014BF2D37E87C00B19E03 /* ContentView.swift in Sources */,
-				14C014C12D37E87C00B19E03 /* Item.swift in Sources */,
 				14C014BD2D37E87C00B19E03 /* MarvelApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -212,7 +232,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14C015202D37F29900B19E03 /* MarvelTests.swift in Sources */,
+				14664C232D39995300FFA4A6 /* MarvelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,14 +366,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Marvel/Marvel.entitlements;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_ENTITLEMENTS = Marvel/App/Marvel.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Marvel/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Marvel/App/Preview Content\"";
 				DEVELOPMENT_TEAM = XMY6QG9YH8;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Marvel/App/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -372,7 +394,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.jordigallenrenau.Marvel.Marvel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -384,14 +407,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Marvel/Marvel.entitlements;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_ENTITLEMENTS = Marvel/App/Marvel.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Marvel/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Marvel/App/Preview Content\"";
 				DEVELOPMENT_TEAM = XMY6QG9YH8;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Marvel/App/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -410,7 +435,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.jordigallenrenau.Marvel.Marvel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -421,6 +447,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = XMY6QG9YH8;
@@ -430,7 +457,12 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.jordigallenrenau.Marvel.MarvelTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Marvel.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Marvel";
@@ -441,6 +473,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = XMY6QG9YH8;
@@ -450,6 +483,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.jordigallenrenau.Marvel.MarvelTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -489,6 +526,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		14A0B8702D38FA3000438F1E /* Core */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Core;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 14C014B12D37E87B00B19E03 /* Project object */;
 }
