@@ -10,6 +10,7 @@
 		14647B4C2D3D0DF700FDB12A /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 14647B4B2D3D0DF700FDB12A /* Core */; };
 		14647B4E2D3D111100FDB12A /* HeroList in Frameworks */ = {isa = PBXBuildFile; productRef = 14647B4D2D3D111100FDB12A /* HeroList */; };
 		14664C232D39995300FFA4A6 /* MarvelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14664C222D39995300FFA4A6 /* MarvelTests.swift */; };
+		1496B18D2D3EF04300B686B1 /* Core in Resources */ = {isa = PBXBuildFile; fileRef = 1496B18C2D3EF04300B686B1 /* Core */; };
 		14AE10B32D3D8B03009AC94F /* AppInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AE10B22D3D8B03009AC94F /* AppInitializer.swift */; };
 		14C014BD2D37E87C00B19E03 /* MarvelApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C014BC2D37E87C00B19E03 /* MarvelApp.swift */; };
 		14C014C32D37E88000B19E03 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14C014C22D37E88000B19E03 /* Assets.xcassets */; };
@@ -29,6 +30,7 @@
 /* Begin PBXFileReference section */
 		14664C222D39995300FFA4A6 /* MarvelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelTests.swift; sourceTree = "<group>"; };
 		14664C252D3A6A7D00FFA4A6 /* HeroList */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = HeroList; sourceTree = "<group>"; };
+		1496B18C2D3EF04300B686B1 /* Core */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Core; sourceTree = "<group>"; };
 		14AE10B22D3D8B03009AC94F /* AppInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInitializer.swift; sourceTree = "<group>"; };
 		14C014B92D37E87C00B19E03 /* Marvel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Marvel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14C014BC2D37E87C00B19E03 /* MarvelApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelApp.swift; sourceTree = "<group>"; };
@@ -36,7 +38,6 @@
 		14C014C42D37E88000B19E03 /* Marvel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Marvel.entitlements; sourceTree = "<group>"; };
 		14C014C62D37E88000B19E03 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		14C0151D2D37F29900B19E03 /* MarvelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MarvelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		14C015262D37F9CE00B19E03 /* Core */ = {isa = PBXFileReference; lastKnownFileType = text; path = Core; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,7 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				14A0B86C2D38F48400438F1E /* App */,
-				14C015262D37F9CE00B19E03 /* Core */,
+				1496B18C2D3EF04300B686B1 /* Core */,
 				14664C252D3A6A7D00FFA4A6 /* HeroList */,
 			);
 			path = Marvel;
@@ -219,6 +220,7 @@
 			files = (
 				14C014C72D37E88000B19E03 /* Preview Assets.xcassets in Resources */,
 				14C014C32D37E88000B19E03 /* Assets.xcassets in Resources */,
+				1496B18D2D3EF04300B686B1 /* Core in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
