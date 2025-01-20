@@ -1,7 +1,9 @@
 import Foundation
 
 public struct Constants {
+    
     public struct API {
+        
         public static var baseURL: URL {
             return URL(string: "https://gateway.marvel.com")!
         }
@@ -22,8 +24,13 @@ public struct Constants {
             }
         }
     }
+}
 
-    public struct Messages {
-        public static let genericError = "Something went wrong. Please try again later."
-    }
+public enum HTTPMethod: String {
+    case get = "GET"
+    case post = "POST"
+    case put = "PUT"
+    case delete = "DELETE"
+    case patch = "PATCH"
+    case head = "HEAD"
 }

@@ -1,6 +1,10 @@
 import Foundation
 
-public class APIClient {
+public protocol APIClientProtocol {
+    func request<T: Decodable>(endpoint: Endpoint, responseType: T.Type) async throws -> T
+}
+
+public class APIClient: APIClientProtocol {
     private let baseURL: URL
     private let session: URLSession
 
