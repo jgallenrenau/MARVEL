@@ -3,12 +3,10 @@ import XCTest
 
 final class KeychainHelperTests: XCTestCase {
 
-    // MARK: - Constants
     let testKey = "MARVEL_PUBLIC_KEY"
     let testValue = "f72273260db3ac0d725ed41d1667c4a1"
     let nonExistentKey = "nonExistentKey"
 
-    // MARK: - Test Setup and Teardown
     override func setUpWithError() throws {
         try? KeychainHelper.delete(key: testKey)
     }
@@ -16,8 +14,6 @@ final class KeychainHelperTests: XCTestCase {
     override func tearDownWithError() throws {
         try? KeychainHelper.delete(key: testKey)
     }
-
-    // MARK: - Tests
 
     func testRetrieveNonExistentKey() {
         XCTAssertThrowsError(try KeychainHelper.retrieve(key: nonExistentKey)) { error in

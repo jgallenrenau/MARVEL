@@ -1,8 +1,9 @@
 import Foundation
 import CryptoKit
 
-struct AuthHelper {
-    static func generateHash(ts: String, privateKey: String, publicKey: String) -> String {
+public struct AuthHelper {
+    
+    public static func generateHash(ts: String, privateKey: String, publicKey: String) -> String {
         if #available(iOS 13.0, *) {
             let input = ts + privateKey + publicKey
             let inputData = Data(input.utf8)

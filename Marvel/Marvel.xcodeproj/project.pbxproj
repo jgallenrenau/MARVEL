@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		14647B4C2D3D0DF700FDB12A /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 14647B4B2D3D0DF700FDB12A /* Core */; };
+		14647B4E2D3D111100FDB12A /* HeroList in Frameworks */ = {isa = PBXBuildFile; productRef = 14647B4D2D3D111100FDB12A /* HeroList */; };
 		14664C232D39995300FFA4A6 /* MarvelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14664C222D39995300FFA4A6 /* MarvelTests.swift */; };
-		14A0B8712D38FA3000438F1E /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 14A0B8702D38FA3000438F1E /* Core */; };
+		14AE10B32D3D8B03009AC94F /* AppInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AE10B22D3D8B03009AC94F /* AppInitializer.swift */; };
 		14C014BD2D37E87C00B19E03 /* MarvelApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C014BC2D37E87C00B19E03 /* MarvelApp.swift */; };
-		14C014BF2D37E87C00B19E03 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C014BE2D37E87C00B19E03 /* ContentView.swift */; };
 		14C014C32D37E88000B19E03 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14C014C22D37E88000B19E03 /* Assets.xcassets */; };
 		14C014C72D37E88000B19E03 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14C014C62D37E88000B19E03 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -27,9 +28,10 @@
 
 /* Begin PBXFileReference section */
 		14664C222D39995300FFA4A6 /* MarvelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelTests.swift; sourceTree = "<group>"; };
+		14664C252D3A6A7D00FFA4A6 /* HeroList */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = HeroList; sourceTree = "<group>"; };
+		14AE10B22D3D8B03009AC94F /* AppInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInitializer.swift; sourceTree = "<group>"; };
 		14C014B92D37E87C00B19E03 /* Marvel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Marvel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14C014BC2D37E87C00B19E03 /* MarvelApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelApp.swift; sourceTree = "<group>"; };
-		14C014BE2D37E87C00B19E03 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		14C014C22D37E88000B19E03 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		14C014C42D37E88000B19E03 /* Marvel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Marvel.entitlements; sourceTree = "<group>"; };
 		14C014C62D37E88000B19E03 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -42,7 +44,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14A0B8712D38FA3000438F1E /* Core in Frameworks */,
+				14647B4E2D3D111100FDB12A /* HeroList in Frameworks */,
+				14647B4C2D3D0DF700FDB12A /* Core in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,11 +62,11 @@
 		14A0B86C2D38F48400438F1E /* App */ = {
 			isa = PBXGroup;
 			children = (
-				14C014C42D37E88000B19E03 /* Marvel.entitlements */,
-				14C014C52D37E88000B19E03 /* Preview Content */,
-				14C014C22D37E88000B19E03 /* Assets.xcassets */,
 				14C014BC2D37E87C00B19E03 /* MarvelApp.swift */,
-				14C014BE2D37E87C00B19E03 /* ContentView.swift */,
+				14AE10B12D3D8AD6009AC94F /* Utils */,
+				14C014C52D37E88000B19E03 /* Preview Content */,
+				14C014C42D37E88000B19E03 /* Marvel.entitlements */,
+				14C014C22D37E88000B19E03 /* Assets.xcassets */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -73,6 +76,14 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		14AE10B12D3D8AD6009AC94F /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				14AE10B22D3D8B03009AC94F /* AppInitializer.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		14C014B02D37E87B00B19E03 = {
@@ -99,6 +110,7 @@
 			children = (
 				14A0B86C2D38F48400438F1E /* App */,
 				14C015262D37F9CE00B19E03 /* Core */,
+				14664C252D3A6A7D00FFA4A6 /* HeroList */,
 			);
 			path = Marvel;
 			sourceTree = "<group>";
@@ -136,7 +148,8 @@
 			);
 			name = Marvel;
 			packageProductDependencies = (
-				14A0B8702D38FA3000438F1E /* Core */,
+				14647B4B2D3D0DF700FDB12A /* Core */,
+				14647B4D2D3D111100FDB12A /* HeroList */,
 			);
 			productName = Marvel;
 			productReference = 14C014B92D37E87C00B19E03 /* Marvel.app */;
@@ -223,7 +236,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14C014BF2D37E87C00B19E03 /* ContentView.swift in Sources */,
+				14AE10B32D3D8B03009AC94F /* AppInitializer.swift in Sources */,
 				14C014BD2D37E87C00B19E03 /* MarvelApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -376,6 +389,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Marvel/App/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -417,6 +432,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Marvel/App/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -528,9 +545,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		14A0B8702D38FA3000438F1E /* Core */ = {
+		14647B4B2D3D0DF700FDB12A /* Core */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Core;
+		};
+		14647B4D2D3D111100FDB12A /* HeroList */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = HeroList;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
