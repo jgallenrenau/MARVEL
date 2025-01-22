@@ -14,7 +14,6 @@ struct MarvelApp: App {
                         self.selectedHero = hero
                     }
                 )
-                .navigationTitle("Heroes")
                 .sheet(item: $selectedHero) { hero in
                     HeroDetailCoordinator(heroId: hero.id)
                 }

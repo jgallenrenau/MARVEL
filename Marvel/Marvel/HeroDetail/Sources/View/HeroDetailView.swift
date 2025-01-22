@@ -7,24 +7,20 @@ struct HeroDetailView: View {
     var body: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
             ZStack {
-                LinearGradient(
-                    gradient: Gradient(colors: [.blue, .purple]),
-                    startPoint: .top,
-                    endPoint: .bottom
-                )
-                .ignoresSafeArea()
-
+                
                 if viewStore.isLoading {
                     CenteredSpinnerView(isLoading: viewStore.isLoading)
                 } else if let hero = viewStore.hero {
                     ScrollView {
-                        VStack(spacing: 16) {
+                        VStack(spacing: 24) {
+                            ListHeaderView(key: "heroDetail_title", bundle: .heroList)
+
                             HeroDetailImageView(imageURL: hero.thumbnailURL)
                                 .clipShape(RoundedRectangle(cornerRadius: 20))
                                 .shadow(radius: 10)
                                 .padding(.top, 16)
 
-                            VStack(alignment: .leading, spacing: 8) {
+                            VStack(alignment: .leading, spacing: 16) {
                                 Text(hero.name)
                                     .font(.largeTitle)
                                     .fontWeight(.bold)
@@ -42,44 +38,46 @@ struct HeroDetailView: View {
                                     .background(Color.white.opacity(0.6))
                                     .padding(.horizontal)
 
-                                SectionHeaderView(title: "Comics")
+                                SectionHeaderView(localizedKey: "heroDetail_comics", bundle: .heroList)
                                 ForEach(hero.comics, id: \.self) { comic in
                                     Text("• \(comic)")
                                         .font(.callout)
                                         .foregroundColor(.white)
                                         .padding(.horizontal)
+                                        .padding(.vertical, 4)
                                 }
 
-                                SectionHeaderView(title: "Series")
+                                SectionHeaderView(localizedKey: "heroDetail_series", bundle: .heroList)
                                 ForEach(hero.series, id: \.self) { series in
                                     Text("• \(series)")
                                         .font(.callout)
                                         .foregroundColor(.white)
                                         .padding(.horizontal)
                                 }
-                                
-                                SectionHeaderView(title: "Stories")
-                                ForEach(hero.series, id: \.self) { series in
-                                    Text("• \(series)")
+
+                                SectionHeaderView(localizedKey: "heroDetail_stories", bundle: .heroList)
+                                ForEach(hero.stories, id: \.self) { story in
+                                    Text("• \(story)")
                                         .font(.callout)
                                         .foregroundColor(.white)
                                         .padding(.horizontal)
                                 }
-                                
-                                SectionHeaderView(title: "Events")
-                                ForEach(hero.series, id: \.self) { series in
-                                    Text("• \(series)")
+
+                                SectionHeaderView(localizedKey: "heroDetail_events", bundle: .heroList)
+                                ForEach(hero.events, id: \.self) { event in
+                                    Text("• \(event)")
                                         .font(.callout)
                                         .foregroundColor(.white)
                                         .padding(.horizontal)
                                 }
-                                .padding()
                             }
+                            .padding(16)
                             .background(
                                 RoundedRectangle(cornerRadius: 20)
                                     .fill(Color.black.opacity(0.4))
                             )
-                            .padding()
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 16)
                         }
                     }
                 } else if let errorMessage = viewStore.errorMessage {
@@ -97,15 +95,17 @@ struct HeroDetailView: View {
     }
 }
 
+
 struct SectionHeaderView: View {
-    let title: String
+    let localizedKey: String
+    let bundle: Bundle
 
     var body: some View {
-        Text(title)
+        Text(localizedKey.localized(bundle: bundle))
             .font(.title2)
             .fontWeight(.semibold)
             .foregroundColor(.white)
-            .padding(.top, 8)
+            .padding(.top, 16)
     }
 }
 
@@ -145,3 +145,26 @@ struct CenteredSpinnerView: View {
 //        )
 //    )
 //}
+
+func ListHeaderView(key: String, bundle: Bundle) -> some View {
+    Text(key.localized(bundle: bundle))
+        .font(.largeTitle)
+        .fontWeight(.bold)
+        .foregroundColor(.primary)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.horizontal, 16)
+        .padding(.vertical, 16)
+        .background(Color(.clear))
+}
+
+public extension String {
+    func localized(bundle: Bundle = .main, tableName: String = "Localizable") -> String {
+        return NSLocalizedString(self, tableName: tableName, bundle: bundle, value: self, comment: "")
+    }
+}
+
+public extension Bundle {
+    static var heroList: Bundle {
+        return Bundle.module
+    }
+}
