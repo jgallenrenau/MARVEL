@@ -9,6 +9,10 @@ struct HeroesListFeature: Reducer {
         static let thresholdForLoadingMore = 10
     }
     
+    struct HeroesListEnvironment {
+        let fetchHeroes: (Int, Int) async throws -> [Hero]
+    }
+    
     struct State: Equatable {
         var heroes: [Hero] = []
         var isLoading: Bool = false
@@ -99,33 +103,19 @@ struct HeroesListFeature: Reducer {
     }
 }
 
-
 extension DependencyValues {
-    var fetchHeroes: (Int, Int) async throws -> [Hero] {
-        get { self[FetchHeroesKey.self] }
-        set { self[FetchHeroesKey.self] = newValue }
-    }
     
-    private enum FetchHeroesKey: DependencyKey {
+    var fetchHeroes: (Int, Int) async throws -> [Hero] {
+        get { self[FetchHeroesUseCaseKey.self] }
+        set { self[FetchHeroesUseCaseKey.self] = newValue }
+    }
+
+    private enum FetchHeroesUseCaseKey: DependencyKey {
+        
         static let liveValue: (Int, Int) async throws -> [Hero] = { offset, limit in
-            
-            let heroesAPI = HeroesAPI()
-            
-            let responseDTOs = try await heroesAPI.fetchHeroes(offset: offset, limit: limit)
-            
-            return responseDTOs.compactMap { dto in
-                
-                guard let thumbnailURL = URL(string: "\(dto.thumbnail.path).\(dto.thumbnail.extension)") else {
-                    return nil
-                }
-                
-                return Hero(
-                    id: dto.id,
-                    name: dto.name,
-                    description: dto.description,
-                    thumbnailURL: thumbnailURL
-                )
-            }
+            let repository = HeroesRepository(remoteDataSource: RemoteHeroesDataSource(api: HeroesAPI()))
+            let fetchHeroesUseCase = FetchHeroesUseCase(repository: repository)
+            return try await fetchHeroesUseCase.execute(offset: offset, limit: limit)
         }
     }
 }
