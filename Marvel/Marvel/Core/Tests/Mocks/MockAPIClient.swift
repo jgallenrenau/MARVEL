@@ -1,19 +1,17 @@
 import Foundation
 @testable import Core
 
-final class MockAPIClient: APIClientProtocol {
+class MockAPIClient: APIClientProtocol {
     var shouldReturnError = false
     var mockResponseData: Data?
 
-    func request<T: Decodable>(endpoint: Endpoint, responseType: T.Type) async throws -> T {
+    func request<T: Decodable>(endpoint: EndpointProtocol, responseType: T.Type) async throws -> T {
         if shouldReturnError {
-            throw URLError(.badServerResponse)
+            throw NetworkError.invalidResponse
         }
-
         guard let data = mockResponseData else {
-            throw URLError(.badServerResponse)
+            throw NetworkError.decodingFailed
         }
-
-        return try JSONDecoder().decode(responseType, from: data)
+        return try JSONDecoder().decode(T.self, from: data)
     }
 }
