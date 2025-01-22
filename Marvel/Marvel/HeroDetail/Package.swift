@@ -3,13 +3,13 @@
 import PackageDescription
 
 let package = Package(
-    name: "HeroList",
+    name: "HeroDetail",
     defaultLocalization: "en",
     platforms: [.iOS(.v17)],
     products: [
         .library(
-            name: "HeroList",
-            targets: ["HeroList"]
+            name: "HeroDetail",
+            targets: ["HeroDetail"]
         )
     ],
     dependencies: [
@@ -19,16 +19,19 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "HeroList",
+            name: "HeroDetail",
             dependencies: [
                 "Core",
                 .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
+            ],
+            resources: [
+                .process("Resources")
             ]
         ),
         .testTarget(
-            name: "HeroListTests",
+            name: "HeroDetailTests",
             dependencies: [
-                "HeroList",
+                "HeroDetail",
                 "Core",
                 .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
             ]

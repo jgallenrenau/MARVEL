@@ -1,0 +1,10 @@
+coverage_service: html
+xcodeproj: Marvel.xcodeproj
+source_directory: .
+ignore:
+  - Pods/*
+  - Tests/*
+  - Carthage/*
+output_directory: slather-report
+html:
+  show_line_numbers: true

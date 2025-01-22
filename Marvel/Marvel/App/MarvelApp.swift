@@ -1,11 +1,11 @@
 import SwiftUI
 import HeroList
-//import HeroDetail
+import HeroDetail
 
 @main
 struct MarvelApp: App {
     @State private var selectedHero: Hero?
-
+    
     var body: some Scene {
         WindowGroup {
             NavigationView {
@@ -14,9 +14,8 @@ struct MarvelApp: App {
                         self.selectedHero = hero
                     }
                 )
-                .navigationTitle("Heroes")
                 .sheet(item: $selectedHero) { hero in
-                    // TODO: HeroDetailCoordinator(hero: hero)
+                    HeroDetailCoordinator(heroId: hero.id)
                 }
             }
             .onAppear {

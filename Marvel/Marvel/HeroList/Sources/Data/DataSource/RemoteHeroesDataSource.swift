@@ -1,9 +1,5 @@
 import Foundation
 
-protocol RemoteHeroesDataSourceProtocol {
-    func getHeroes(offset: Int, limit: Int) async throws -> [HeroResponseDTO]
-}
-
 final class RemoteHeroesDataSource: RemoteHeroesDataSourceProtocol {
     private let api: HeroesAPIProtocol
 

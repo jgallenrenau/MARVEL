@@ -10,7 +10,7 @@ struct HeroesRowView: View {
             } placeholder: {
                 ProgressView()
             }
-            .frame(width: 50, height: 50)
+            .frame(width: 100, height: 100)
             .clipShape(Circle())
 
             VStack(alignment: .leading) {
@@ -22,6 +22,7 @@ struct HeroesRowView: View {
     }
 }
 
-#Preview {
-    HeroesRowView(hero: Hero(id: 0, name: "Capitan america", description: "The best one", thumbnailURL: URL(fileURLWithPath: "")))
-}
+//#Preview {
+//    HeroesRowView(hero: Hero(id: 0, name: "Capitan america", description: "The best one", thumbnailURL: URL(fileURLWithPath: "")))
+//}
+  
