@@ -4,6 +4,7 @@ import PackageDescription
 
 let package = Package(
     name: "HeroList",
+    defaultLocalization: "en",
     platforms: [.iOS(.v17)],
     products: [
         .library(

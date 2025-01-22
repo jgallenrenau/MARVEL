@@ -17,7 +17,6 @@
 		14AE10B32D3D8B03009AC94F /* AppInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AE10B22D3D8B03009AC94F /* AppInitializer.swift */; };
 		14C014BD2D37E87C00B19E03 /* MarvelApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C014BC2D37E87C00B19E03 /* MarvelApp.swift */; };
 		14C014C32D37E88000B19E03 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14C014C22D37E88000B19E03 /* Assets.xcassets */; };
-		14C014C72D37E88000B19E03 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14C014C62D37E88000B19E03 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,7 +39,6 @@
 		14C014BC2D37E87C00B19E03 /* MarvelApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelApp.swift; sourceTree = "<group>"; };
 		14C014C22D37E88000B19E03 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		14C014C42D37E88000B19E03 /* Marvel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Marvel.entitlements; sourceTree = "<group>"; };
-		14C014C62D37E88000B19E03 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		14C0151D2D37F29900B19E03 /* MarvelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MarvelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -70,7 +68,6 @@
 			children = (
 				14C014BC2D37E87C00B19E03 /* MarvelApp.swift */,
 				14AE10B12D3D8AD6009AC94F /* Utils */,
-				14C014C52D37E88000B19E03 /* Preview Content */,
 				14C014C42D37E88000B19E03 /* Marvel.entitlements */,
 				14C014C22D37E88000B19E03 /* Assets.xcassets */,
 			);
@@ -120,14 +117,6 @@
 				14736BC22D3EF4870010D276 /* HeroDetail */,
 			);
 			path = Marvel;
-			sourceTree = "<group>";
-		};
-		14C014C52D37E88000B19E03 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				14C014C62D37E88000B19E03 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		14C0151E2D37F29900B19E03 /* MarvelTests */ = {
@@ -226,7 +215,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				140E85762D3F0857000B6F31 /* HeroList in Resources */,
-				14C014C72D37E88000B19E03 /* Preview Assets.xcassets in Resources */,
 				14C014C32D37E88000B19E03 /* Assets.xcassets in Resources */,
 				1496B18D2D3EF04300B686B1 /* Core in Resources */,
 				14736BC32D3EF4870010D276 /* HeroDetail in Resources */,
@@ -394,10 +382,10 @@
 				CODE_SIGN_ENTITLEMENTS = Marvel/App/Marvel.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Marvel/App/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = XMY6QG9YH8;
 				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_PREVIEWS = YES;
+				ENABLE_PREVIEWS = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Marvel/App/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "";
@@ -437,10 +425,10 @@
 				CODE_SIGN_ENTITLEMENTS = Marvel/App/Marvel.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Marvel/App/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = XMY6QG9YH8;
 				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_PREVIEWS = YES;
+				ENABLE_PREVIEWS = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Marvel/App/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "";

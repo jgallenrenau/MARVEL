@@ -4,6 +4,7 @@ import PackageDescription
 
 let package = Package(
     name: "HeroDetail",
+    defaultLocalization: "en",
     platforms: [.iOS(.v17)],
     products: [
         .library(
@@ -22,6 +23,9 @@ let package = Package(
             dependencies: [
                 "Core",
                 .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
+            ],
+            resources: [
+                .process("Resources")
             ]
         ),
         .testTarget(
