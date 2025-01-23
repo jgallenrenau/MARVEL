@@ -30,7 +30,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1415428B2D4140F3007B68D8 /* ComponentsUI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = ComponentsUI; sourceTree = "<group>"; };
 		14664C222D39995300FFA4A6 /* MarvelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelTests.swift; sourceTree = "<group>"; };
 		14664C252D3A6A7D00FFA4A6 /* HeroList */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = HeroList; sourceTree = "<group>"; };
 		14736BC22D3EF4870010D276 /* HeroDetail */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = HeroDetail; sourceTree = "<group>"; };
@@ -116,7 +115,6 @@
 				1496B18C2D3EF04300B686B1 /* Core */,
 				14664C252D3A6A7D00FFA4A6 /* HeroList */,
 				14736BC22D3EF4870010D276 /* HeroDetail */,
-				1415428B2D4140F3007B68D8 /* ComponentsUI */,
 			);
 			path = Marvel;
 			sourceTree = "<group>";
@@ -407,6 +405,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
+				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jordigallenrenau.Marvel.Marvel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
