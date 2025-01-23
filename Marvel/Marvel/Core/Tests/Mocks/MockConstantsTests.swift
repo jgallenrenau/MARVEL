@@ -10,14 +10,23 @@ class MockConstantsTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        let keychainHelper: KeychainHelperProtocol = KeychainHelper()
-
+        
+        let mockKeychainHelper = MockKeychainHelper()
+        
         do {
-            try keychainHelper.save(key: PredefinedKeys.privateKey.rawValue, value: "mockPrivateKey")
-            try keychainHelper.save(key: PredefinedKeys.publicKey.rawValue, value: "mockPublicKey")
+            try mockKeychainHelper.save(key: PredefinedKeys.privateKey.rawValue, value: "mockPrivateKey")
+            try mockKeychainHelper.save(key: PredefinedKeys.publicKey.rawValue, value: "mockPublicKey")
         } catch {
-            print("❌ [TEST] Failed to initialize keys in Keychain: \(error)")
+            XCTFail("❌ [TEST] Failed to initialize keys in Keychain: \(error)")
         }
+        
+        Constants.setKeychainHelper(mockKeychainHelper)
+    }
+    
+    override func tearDown() {
+        super.tearDown()
+        
+        Constants.setKeychainHelper(KeychainHelper())
     }
     
     func testPublicKey() {
