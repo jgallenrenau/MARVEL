@@ -2,6 +2,8 @@ import Foundation
 
 public struct Constants {
     
+    private static var keychainHelper: KeychainHelperProtocol = KeychainHelper()
+
     public struct API {
         
         public static var baseURL: URL {
@@ -10,7 +12,7 @@ public struct Constants {
 
         public static var publicKey: String {
             do {
-                return try KeychainHelper.retrieve(key: "MARVEL_PUBLIC_KEY")
+                return try keychainHelper.retrieve(key: "MARVEL_PUBLIC_KEY")
             } catch {
                 fatalError("Public Key not found in Keychain: \(error)")
             }
@@ -18,19 +20,14 @@ public struct Constants {
 
         public static var privateKey: String {
             do {
-                return try KeychainHelper.retrieve(key: "MARVEL_PRIVATE_KEY")
+                return try keychainHelper.retrieve(key: "MARVEL_PRIVATE_KEY")
             } catch {
                 fatalError("Private Key not found in Keychain: \(error)")
             }
         }
     }
-}
-
-public enum HTTPMethod: String {
-    case get = "GET"
-    case post = "POST"
-    case put = "PUT"
-    case delete = "DELETE"
-    case patch = "PATCH"
-    case head = "HEAD"
+    
+    public static func setKeychainHelper(_ helper: KeychainHelperProtocol) {
+        keychainHelper = helper
+    }
 }

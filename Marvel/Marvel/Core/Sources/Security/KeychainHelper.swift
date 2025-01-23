@@ -1,9 +1,11 @@
 import Foundation
 import Security
 
-public struct KeychainHelper {
+public class KeychainHelper: KeychainHelperProtocol {
+    
+    public init() {}
 
-    public static func save(key: String, value: String) throws {
+    public func save(key: String, value: String) throws {
         let data = value.data(using: .utf8)!
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
@@ -18,7 +20,7 @@ public struct KeychainHelper {
         }
     }
 
-    public static func retrieve(key: String) throws -> String {
+    public func retrieve(key: String) throws -> String {
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrAccount as String: key,
@@ -35,7 +37,7 @@ public struct KeychainHelper {
         return value
     }
 
-    public static func delete(key: String) throws {
+    public func delete(key: String) throws {
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrAccount as String: key
@@ -46,10 +48,3 @@ public struct KeychainHelper {
         }
     }
 }
-
-enum KeychainError: Error {
-    case unableToSave
-    case unableToRetrieve
-    case unableToDelete
-}
-
