@@ -29,9 +29,11 @@ public class APIClient: APIClientProtocol {
         do {
             let decodedResponse = try JSONDecoder().decode(T.self, from: data)
             logger.logInfo("Request succeeded for \(urlRequest.url?.absoluteString ?? "unknown URL")")
+            logger.logError("Raw Response: \(String(data: data, encoding: .utf8) ?? "nil")")
             return decodedResponse
         } catch {
             logger.logError("Decoding failed: \(error.localizedDescription)")
+            logger.logError("Raw data: \(String(data: data, encoding: .utf8) ?? "nil")")
             throw NetworkError.decodingFailed
         }
     }
