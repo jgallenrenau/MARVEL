@@ -1,176 +1,270 @@
-
-# **Core SPM Module - Marvel App**
-
-The `Core` module is a **Swift Package** that provides essential functionalities shared across the Marvel app. It includes:
-
-- **Networking** capabilities (API Client, Endpoints).
-- **Utilities** (Logger, Constants).
-- **Error handling** for networking and decoding.
+# **Core Module Documentation**
 
 ---
 
-## **Features**
+## **Introduction**
 
-### **1. Network**
-- **`APIClient`**: A reusable HTTP client for making requests with `async/await`.
-- **`Endpoints`**: Configurations for Marvel API endpoints.
-- **`NetworkError`**: Centralized error management for network operations.
-
-### **2. Utilities**
-- **`Constants`**: Centralized storage for API keys, base URLs, and configuration constants.
-- **`Logger`**: A lightweight logging utility for debugging and tracking events.
+The `Core` module is the backbone of the application, providing essential utilities, protocols, API clients, and helpers. It is structured for scalability and testability, with a strong focus on separation of concerns and modularity.
 
 ---
+
+## **Folder Structure**
+
+The `Core` module is organized into the following key components:
+
+1. **`API/`** - Contains classes and structures responsible for API communication.
+2. **`Protocols/`** - Defines reusable protocols for dependency injection and testability.
+3. **`Security/`** - Manages secure storage using the Keychain.
+4. **`Utilities/`** - Includes utility classes for constants and logging.
+5. **`Tests/`** - Contains integration tests, unit tests, and mock classes.
+
+---
+
+### **API Layer**
+
+The `API/` directory contains components related to API requests and their management:
+
+- **`APIClient`**: A class that handles HTTP requests and response decoding. Implements `APIClientProtocol`.
+- **`APIHelper`**: Provides helper methods to create query parameters and endpoints.
+- **`APIKeys`**: Retrieves API keys from the app’s `Info.plist`.
+- **`Endpoint`**: Represents API endpoints, including paths, HTTP methods, and query parameters.
+- **`HTTPMethod`**: Enumerates HTTP request methods such as `.get` and `.post`.
+- **`NetworkError`**: Defines error cases for network-related failures, such as invalid requests or decoding errors.
+
+---
+
+### **Protocols**
+
+The `Protocols` layer defines the contracts for key components, enabling dependency injection and easier testability.
+
+- **`APIClientProtocol`**: Outlines the required methods for API client implementations, such as performing HTTP requests.
+- **`KeychainHelperProtocol`**: Specifies the interface for interacting with the keychain, providing methods to save, retrieve, and delete data securely.
+
+---
+
+### **Security**
+
+The `Security` layer handles keychain interactions and ensures secure storage of sensitive data.
+
+- **`InfoPlistHelper`**: A utility to fetch predefined keys from the app's `Info.plist` file and store them securely in the keychain if needed.
+- **`KeychainError`**: An enumeration that defines errors related to keychain operations (e.g., saving, retrieving, or deleting data).
+- **`KeychainHelper`**: Implements `KeychainHelperProtocol`, providing methods to save, retrieve, and delete data securely using the system keychain.
+
+---
+
+### **Utilities**
+
+The `Utilities` layer contains reusable components and shared logic across the core module.
+
+- **`Constants`**: Stores static configuration data, such as base API URLs and secure access to API keys retrieved from the keychain.
+- **`Logger`**: Implements logging functionality, allowing the application to log informational, warning, and error messages.
+
+---
+
+## **Tests**
+
+The `Tests` layer is organized into three main subdirectories to ensure comprehensive testing of the Core module.
+
+#### **IntegrationTests**
+
+Focuses on testing the interaction between multiple components or external systems.
+- **`APIClientIntegrationTests`**: Tests the full flow of API requests and responses using mocked endpoints.
+- **`APIHelperIntegrationTests`**: Validates the correct generation of query parameters for API requests.
+- **`EndpointsIntegrationTests`**: Verifies the correct construction of `Endpoint` objects and their URL requests.
+
+#### **Mocks**
+
+Provides mock implementations of protocols and dependencies for isolated unit testing.
+- **`MockAPIClient`**: A mock version of the API client to simulate HTTP responses.
+- **`MockConstantsTests`**: Mock configuration of constants for specific test scenarios.
+- **`MockInfoPlistProvider`**: Mock utility to simulate `Info.plist` data in tests.
+- **`MockKeychainHelper`**: A mock keychain helper to test secure storage operations.
+- **`MockLogger`**: Captures log messages for validating logging behavior in tests.
+- **`MockResponse`**: Represents a mocked HTTP response structure for API tests.
+- **`MockURLProtocol`**: Simulates URL responses for mocking network requests.
+
+#### **UnitTests**
+
+Isolates testing to individual components or functionalities.
+- **`APIClientTests`**: Tests the `APIClient` class for proper request and response handling.
+- **`APIHelperTests`**: Verifies the logic for generating API query parameters.
+- **`ConstantsTests`**: Ensures constant values and configurations behave as expected.
+- **`InfoPlistHelperTests`**: Tests interactions with the `Info.plist` file and keychain integration.
+- **`KeychainHelperTests`**: Validates the `KeychainHelper` methods for secure data storage.
+- **`LoggerTests`**: Ensures that logging works correctly and captures expected messages.
+- **`NetworkErrorTests`**: Tests error handling and messaging for various network-related errors.
+
 
 ## **Structure**
 
 ```
 Core/
 ├── Sources/
-│   ├── Network/
-│   │   ├── Endpoints/
-│   │   │   ├── Endpoint.swift
-│   │   │   └── MarvelEndpoint.swift
+│   ├── API/
 │   │   ├── APIClient.swift
-│   │   ├── NetworkError.swift
-│   ├── Utilities/
-│   │   ├── Constants.swift
-│   │   └── Logger.swift
-└── Tests/
+│   │   ├── APIHelper.swift
+│   │   ├── APIKeys.swift
+│   │   ├── Endpoint.swift
+│   │   ├── HTTPMethod.swift
+│   │   └── NetworkError.swift
+│   ├── Protocols/
+│   │   ├── APIClientProtocol.swift
+│   │   └── KeychainHelperProtocol.swift
+│   ├── Security/
+│   │   ├── InfoPlistHelper.swift
+│   │   ├── KeychainError.swift
+│   │   └── KeychainHelper.swift
+│   └── Utilities/
+│       ├── Constants.swift
+│       └── Logger.swift
+├── Tests/
+│   ├── IntegrationTests/
+│   │   ├── APIClientIntegrationTests.swift
+│   │   ├── APIHelperIntegrationTests.swift
+│   │   └── EndpointsIntegrationTests.swift
+│   ├── Mocks/
+│   │   ├── MockAPIClient.swift
+│   │   ├── MockConstantsTests.swift
+│   │   ├── MockInfoPlistProvider.swift
+│   │   ├── MockKeychainHelper.swift
+│   │   ├── MockLogger.swift
+│   │   ├── MockResponse.swift
+│   │   └── MockURLProtocol.swift
+│   └── UnitTests/
+│       ├── APIClientTests.swift
+│       ├── APIHelperTests.swift
+│       ├── ConstantsTests.swift
+│       ├── InfoPlistHelperTests.swift
+│       ├── KeychainHelperTests.swift
+│       ├── LoggerTests.swift
+│       └── NetworkErrorTests.swift
+
 ```
 
 ---
 
 ## **Usage**
 
+This section provides practical examples of how to use the Core module functionalities in your project. 
+
 ### **1. APIClient**
 
 The `APIClient` handles HTTP requests using `async/await` and decodes responses into the desired model type.
 
 #### Example:
+
 ```swift
-let apiClient = APIClient(baseURL: URL(string: "https://gateway.marvel.com")!)
+import Core
+
+let apiClient = APIClient(baseURL: Constants.API.baseURL)
+
+Task {
+    do {
+        let endpoint = Endpoint(method: .get, path: "/v1/public/characters", queryItems: APIHelper.generateQueryItems(offset: 0, limit: 20))
+        let response: MockResponse = try await apiClient.request(endpoint: endpoint, responseType: MockResponse.self)
+        print("Response:", response)
+    } catch {
+        print("Error:", error)
+    }
+}
+```
+
+### **2. Keychain Helper**
+
+The KeychainHelper class provides secure storage for sensitive data. Here's an example:
+
+#### Example:
+
+```swift
+import Core
+
+let keychainHelper = KeychainHelper()
 
 do {
-    let response: CharacterListResponse = try await apiClient.request(
-        endpoint: MarvelEndpoint.getCharacters(limit: 20, offset: 0),
-        responseType: CharacterListResponse.self
-    )
-    print(response.data.results)
+    try keychainHelper.save(key: "USER_TOKEN", value: "mockToken123")
+    let token = try keychainHelper.retrieve(key: "USER_TOKEN")
+    print("Retrieved Token:", token)
+    try keychainHelper.delete(key: "USER_TOKEN")
 } catch {
-    print("Error: \(error.localizedDescription)")
+    print("Keychain Error:", error)
 }
 ```
 
-### **2. Endpoints**
+### **3. Logger**
 
-Endpoints define API routes and parameters.
+The Logger class logs messages at different levels (info, warning, error). Example:
 
 #### Example:
+
 ```swift
-public struct MarvelEndpoint: Endpoint {
-    public static func getCharacters(limit: Int = 20, offset: Int = 0) -> MarvelEndpoint {
-        return MarvelEndpoint(
-            path: "/v1/public/characters",
-            queryItems: [
-                URLQueryItem(name: "limit", value: "\(limit)"),
-                URLQueryItem(name: "offset", value: "\(offset)"),
-                URLQueryItem(name: "apikey", value: "your_public_api_key")
-            ]
-        )
-    }
-}
+import Core
+
+let logger = Logger()
+
+logger.logInfo("This is an info log.")
+logger.logWarning("This is a warning log.")
+logger.logError("This is an error log.")
+
 ```
 
-### **3. NetworkError**
+### **4. Constants and Configuration**
 
-Centralized error handling for consistent and meaningful error messages.
+The Constants struct provides centralized configuration for API keys and the base URL:
 
 #### Example:
-```swift
-public enum NetworkError: Error, LocalizedError {
-    case invalidRequest
-    case invalidResponse
-    case decodingFailed(Error)
 
-    public var errorDescription: String? {
-        switch self {
-        case .invalidRequest:
-            return "The request is invalid."
-        case .invalidResponse:
-            return "The server response is invalid."
-        case .decodingFailed(let error):
-            return "Failed to decode the response: \(error.localizedDescription)"
-        }
-    }
+```swift
+import Core
+
+print("Base URL:", Constants.API.baseURL)
+
+do {
+    print("Public Key:", Constants.API.publicKey)
+    print("Private Key:", Constants.API.privateKey)
+} catch {
+    print("Error retrieving keys:", error)
 }
+
 ```
 
-### **4. Utilities**
+### *5. API Helper**
 
-#### **Constants**
-Centralized configuration for API keys, base URLs, and other constants.
+The APIHelper simplifies query item generation for API requests. Example:
 
-```swift
-public struct Constants {
-    public static let baseURL = URL(string: "https://gateway.marvel.com")!
-    public static let apiKey = "your_public_api_key"
-}
-```
-
-#### **Logger**
-A simple utility for logging messages at different levels.
+#### Example:
 
 ```swift
-Logger.info("Fetching Marvel characters")
-Logger.error("Failed to fetch characters", error: someError)
+import Core
+
+let queryItems = APIHelper.generateQueryItems(offset: 0, limit: 20)
+print("Generated Query Items:", queryItems)
+
 ```
 
 ---
 
-## **Testing**
+### *6. Mocking for Testing**
 
-Unit tests for the `Core` module are located in the `Tests/` directory. These include:
+When running tests, you can configure mock data and dependencies:
 
-1. Tests for **`APIClient`**.
-2. Tests for **`MarvelEndpoint`**.
-3. Validation of **`NetworkError`** handling.
+#### Example:
 
-#### Example Test Case:
 ```swift
-func testAPIClientRequest() async throws {
-    let mockSession = MockURLSession(data: mockData, response: mockResponse, error: nil)
-    let apiClient = APIClient(baseURL: Constants.baseURL, session: mockSession)
+import Core
+import XCTest
 
-    let response: CharacterListResponse = try await apiClient.request(
-        endpoint: MarvelEndpoint.getCharacters(limit: 20, offset: 0),
-        responseType: CharacterListResponse.self
-    )
-
-    XCTAssertEqual(response.data.results.count, 20)
+class ExampleTests: XCTestCase {
+    func testExample() {
+        let mockKeychain = MockKeychainHelper()
+        try? mockKeychain.save(key: "MARVEL_PUBLIC_KEY", value: "mockPublicKey")
+        Constants.setKeychainHelper(mockKeychain)
+        
+        XCTAssertEqual(Constants.API.publicKey, "mockPublicKey")
+    }
 }
 ```
 
----
-
-## **Installation**
-
-To include the `Core` module in your project:
-
-1. Add the package dependency to your `Core.swift`:
-
-```swift
-.package(url: "https://github.com/your-repo/marvel-core", from: "1.0.0")
-```
-
-2. Add `Core` as a dependency in your target:
-
-```swift
-.target(
-    name: "YourFeatureModule",
-    dependencies: ["Core"]
-)
-```
+These examples cover common scenarios for using the Core module in your project, including API requests, secure storage, logging, configuration management, and mocking for tests. 
 
 ---
 
