@@ -2,7 +2,6 @@ import os.log
 
 public protocol LoggerProtocol {
     func logInfo(_ message: String)
-    func logWarning(_ message: String)
     func logError(_ message: String)
 }
 
@@ -11,10 +10,6 @@ public class Logger: LoggerProtocol {
 
     public func logInfo(_ message: String) {
         os_log(.info, "%@", message)
-    }
-
-    public func logWarning(_ message: String) {
-        os_log(.default, "%@", message)
     }
 
     public func logError(_ message: String) {

@@ -2,7 +2,7 @@ import Foundation
 
 public struct Constants {
     
-    private static let keychainHelper: KeychainHelperProtocol = KeychainHelper()
+    private static var keychainHelper: KeychainHelperProtocol = KeychainHelper()
 
     public struct API {
         
@@ -25,5 +25,9 @@ public struct Constants {
                 fatalError("Private Key not found in Keychain: \(error)")
             }
         }
+    }
+    
+    public static func setKeychainHelper(_ helper: KeychainHelperProtocol) {
+        keychainHelper = helper
     }
 }
