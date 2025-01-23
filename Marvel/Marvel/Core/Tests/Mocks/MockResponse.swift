@@ -1,3 +1,14 @@
+import Foundation
+
 struct MockResponse: Decodable {
-    let key: String
+    let data: MockData
+}
+
+struct MockData: Decodable {
+    let results: [MockResult]
+}
+
+struct MockResult: Decodable {
+    let id: Int
+    let name: String
 }
