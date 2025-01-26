@@ -3,10 +3,10 @@ import os.log
 
 public class APIClient: APIClientProtocol {
     private let baseURL: URL
-    private let session: URLSession
+    private let session: URLSessionProtocol
     private let logger: LoggerProtocol
 
-    public init(baseURL: URL, session: URLSession = .shared, logger: LoggerProtocol = Logger()) {
+    public init(baseURL: URL, session: URLSessionProtocol = URLSession.shared, logger: LoggerProtocol = Logger()) {
         self.baseURL = baseURL
         self.session = session
         self.logger = logger

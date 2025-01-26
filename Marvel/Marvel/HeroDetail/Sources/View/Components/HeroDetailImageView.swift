@@ -32,9 +32,9 @@ struct HeroDetailImageView: View {
         }
     }
 }
-//
-//#Preview {
-//    HeroDetailImageView(
-//        imageURL: URL(string: "http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784.jpg")!
-//    )
-//}
+
+#Preview {
+    HeroDetailImageView(
+        imageURL: URL(string: "http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784.jpg")!
+    )
+}

@@ -20,3 +20,9 @@ public enum NetworkError: Error, LocalizedError {
         }
     }
 }
+
+extension NetworkError: Equatable {
+    public static func == (lhs: NetworkError, rhs: NetworkError) -> Bool {
+        return lhs.localizedDescription == rhs.localizedDescription
+    }
+}

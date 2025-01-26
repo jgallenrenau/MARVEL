@@ -13,7 +13,7 @@ class ConstantsTests: XCTestCase {
     
     override func tearDown() {
         super.tearDown()
-        Constants.setKeychainHelper(KeychainHelper()) // Restaurar el helper original después de cada prueba
+        Constants.setKeychainHelper(KeychainHelper())
     }
     
     func testBaseURL() {
