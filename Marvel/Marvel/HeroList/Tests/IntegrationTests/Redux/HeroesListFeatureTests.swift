@@ -7,8 +7,8 @@ final class HeroesListFeatureTests: XCTestCase {
     
     func test_fetchHeroesSuccess() async {
         let testHeroes = [
-            Hero(id: 1, name: "Spider-Man", description: "Hero", thumbnailURL: URL(string: "https://example.com")!),
-            Hero(id: 2, name: "Iron Man", description: "Hero", thumbnailURL: URL(string: "https://example.com")!)
+            Hero(id: 1, name: "Spider-Man", description: "Hero", thumbnailURL: URL(string: "http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784.jpg")!),
+            Hero(id: 2, name: "Iron Man", description: "Hero", thumbnailURL: URL(string: "http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784.jpg")!)
         ]
         
         let fetchHeroesMock: (Int, Int) async throws -> [Hero] = { _, _ in
@@ -34,10 +34,10 @@ final class HeroesListFeatureTests: XCTestCase {
     
     func test_loadMoreHeroesSuccess() async {
         let initialHeroes = [
-            Hero(id: 1, name: "Spider-Man", description: "Hero", thumbnailURL: URL(string: "https://example.com")!)
+            Hero(id: 1, name: "Spider-Man", description: "Hero", thumbnailURL: URL(string: "http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784.jpg")!)
         ]
         let newHeroes = [
-            Hero(id: 2, name: "Iron Man", description: "Hero", thumbnailURL: URL(string: "https://example.com")!)
+            Hero(id: 2, name: "Iron Man", description: "Hero", thumbnailURL: URL(string: "http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784.jpg")!)
         ]
         
         let fetchHeroesMock: (Int, Int) async throws -> [Hero] = { offset, _ in

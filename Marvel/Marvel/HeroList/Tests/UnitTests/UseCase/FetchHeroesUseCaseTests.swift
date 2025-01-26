@@ -32,7 +32,7 @@ final class FetchHeroesUseCaseTests: XCTestCase {
                 id: 1,
                 name: "Spider-Man",
                 description: "",
-                thumbnailURL: URL(string: "https://example.com")!
+                thumbnailURL: URL(string: "http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784.jpg")!
             )
         ])
 

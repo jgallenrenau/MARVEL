@@ -7,7 +7,7 @@ import ComposableArchitecture
 final class HeroListCoordinatorTests: XCTestCase {
     
     func test_onHeroSelectedIsCalled() async {
-        let testHero = Hero(id: 1, name: "Spider-Man", description: "Hero", thumbnailURL: URL(string: "https://example.com")!)
+        let testHero = Hero(id: 1, name: "Spider-Man", description: "Hero", thumbnailURL: URL(string: "http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784.jpg")!)
 
         var selectedHero: Hero?
 
@@ -16,22 +16,21 @@ final class HeroListCoordinatorTests: XCTestCase {
         }
 
         let store = Store(
-            initialState: HeroesListFeature.State(heroes: [testHero]), // Simula que el estado tiene un héroe cargado
+            initialState: HeroesListFeature.State(heroes: [testHero]),
             reducer: {
                 HeroesListFeature()
-                    .dependency(\.fetchHeroes, { _, _ in [testHero] }) // Mock de `fetchHeroes`
+                    .dependency(\.fetchHeroes, { _, _ in [testHero] })
             }
         )
 
-        let view = HeroesListView(store: store, onHeroSelected: { hero in
+        _ = HeroesListView(store: store, onHeroSelected: { hero in
             selectedHero = hero
         })
 
         let viewStore = ViewStore(store, observe: { $0 })
 
-        viewStore.send(.heroesLoadedSuccess([testHero])) // Simular carga exitosa de héroes
+        viewStore.send(.heroesLoadedSuccess([testHero]))
 
         XCTAssertNotNil(testHero)
     }
 }
-

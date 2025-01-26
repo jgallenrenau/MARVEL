@@ -26,7 +26,7 @@ final class HeroesAPIIntegrationTests: XCTestCase {
                 name: "Spider-Man",
                 description: "Hero",
                 modified: "2023-01-01T00:00:00Z",
-                thumbnail: ThumbnailDTO(path: "https://example.com", extension: "jpg"),
+                thumbnail: ThumbnailDTO(path: "http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784", extension: "jpg"),
                 resourceURI: "",
                 comics: ComicsDTO(available: 0, collectionURI: "", items: [], returned: 0)
             )
