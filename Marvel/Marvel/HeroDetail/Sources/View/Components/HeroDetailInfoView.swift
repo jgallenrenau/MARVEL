@@ -59,13 +59,13 @@ struct SectionView: View {
     }
 }
 
-//#Preview {
-//    HeroDetailInfoView(
-//        name: "Spider-Man",
-//        description: "A friendly neighborhood superhero.",
-//        comics: ["Comic 1", "Comic 2"],
-//        series: ["Series 1", "Series 2"],
-//        stories: ["Story 1", "Story 2"],
-//        events: ["Event 1", "Event 2"]
-//    )
-//}
+#Preview {
+    HeroDetailInfoView(
+        name: "Spider-Man",
+        description: "A friendly neighborhood superhero.",
+        comics: ["Comic 1", "Comic 2"],
+        series: ["Series 1", "Series 2"],
+        stories: ["Story 1", "Story 2"],
+        events: ["Event 1", "Event 2"]
+    )
+}
