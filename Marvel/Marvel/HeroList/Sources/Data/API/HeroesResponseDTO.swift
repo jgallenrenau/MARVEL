@@ -1,47 +1,96 @@
 import Foundation
 
-struct HeroResponseDTOContainer: Codable {
-    let code: Int
-    let status: String
-    let data: HeroDataDTO
+public struct HeroResponseDTOContainer: Codable {
+    public let code: Int
+    public let status: String
+    public let data: HeroDataDTO
+
+    public init(code: Int, status: String, data: HeroDataDTO) {
+        self.code = code
+        self.status = status
+        self.data = data
+    }
 }
 
-struct HeroDataDTO: Codable {
-    let offset: Int
-    let limit: Int
-    let total: Int
-    let count: Int
-    let results: [HeroResponseDTO]
+public struct HeroDataDTO: Codable {
+    public let offset: Int
+    public let limit: Int
+    public let total: Int
+    public let count: Int
+    public let results: [HeroResponseDTO]
+
+    public init(offset: Int, limit: Int, total: Int, count: Int, results: [HeroResponseDTO]) {
+        self.offset = offset
+        self.limit = limit
+        self.total = total
+        self.count = count
+        self.results = results
+    }
 }
 
-struct HeroResponseDTO: Codable {
-    let id: Int
-    let name: String
-    let description: String
-    let modified: String
-    let thumbnail: ThumbnailDTO
-    let resourceURI: String
-    let comics: ComicsDTO
+public struct HeroResponseDTO: Codable {
+    public let id: Int
+    public let name: String
+    public let description: String
+    public let modified: String
+    public let thumbnail: ThumbnailDTO
+    public let resourceURI: String
+    public let comics: ComicsDTO
+
+    public init(
+        id: Int,
+        name: String,
+        description: String,
+        modified: String,
+        thumbnail: ThumbnailDTO,
+        resourceURI: String,
+        comics: ComicsDTO
+    ) {
+        self.id = id
+        self.name = name
+        self.description = description
+        self.modified = modified
+        self.thumbnail = thumbnail
+        self.resourceURI = resourceURI
+        self.comics = comics
+    }
 }
 
-struct ThumbnailDTO: Codable {
-    let path: String
-    let `extension`: String
+public struct ThumbnailDTO: Codable {
+    public let path: String
+    public let `extension`: String
+
+    public init(path: String, extension: String) {
+        self.path = path
+        self.extension = `extension`
+    }
 }
 
-struct ComicsDTO: Codable {
-    let available: Int
-    let collectionURI: String
-    let items: [ComicItemDTO]
-    let returned: Int
+public struct ComicsDTO: Codable {
+    public let available: Int
+    public let collectionURI: String
+    public let items: [ComicItemDTO]
+    public let returned: Int
+
+    public init(available: Int, collectionURI: String, items: [ComicItemDTO], returned: Int) {
+        self.available = available
+        self.collectionURI = collectionURI
+        self.items = items
+        self.returned = returned
+    }
 }
 
-struct ComicItemDTO: Codable {
-    let resourceURI: String
-    let name: String
+public struct ComicItemDTO: Codable {
+    public let resourceURI: String
+    public let name: String
+
+    public init(resourceURI: String, name: String) {
+        self.resourceURI = resourceURI
+        self.name = name
+    }
 }
 
-extension HeroResponseDTO {
+public extension HeroResponseDTO {
     func toDomain() -> Hero {
         return Hero(
             id: id,

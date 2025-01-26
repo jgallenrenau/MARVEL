@@ -22,7 +22,6 @@ struct HeroesRowView: View {
     }
 }
 
-//#Preview {
-//    HeroesRowView(hero: Hero(id: 0, name: "Capitan america", description: "The best one", thumbnailURL: URL(fileURLWithPath: "")))
-//}
-  
+#Preview {
+    HeroesRowView(hero: Hero(id: 0, name: "Capitan america", description: "The best one", thumbnailURL: URL(fileURLWithPath: "")))
+}
