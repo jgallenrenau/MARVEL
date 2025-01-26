@@ -109,7 +109,8 @@ Core/
 │   │   └── NetworkError.swift
 │   ├── Protocols/
 │   │   ├── APIClientProtocol.swift
-│   │   └── KeychainHelperProtocol.swift
+│   │   └── KeychainHelperProtocol.swiftç
+│   │   └── URLSessionProtocol.swift
 │   ├── Security/
 │   │   ├── InfoPlistHelper.swift
 │   │   ├── KeychainError.swift
