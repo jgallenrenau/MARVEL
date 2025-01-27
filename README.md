@@ -90,7 +90,7 @@ The app is split into the following modules, and each module includes a dedicate
 2. **Encapsulation**: Prevents unnecessary dependencies and ensures a clear separation of concerns.
 3. **Reusability**: Common components in the Core module can be reused across multiple features.
 
-![Alt text](ReadmeFiles/Modular_App.png.png?raw=true "TCA Architecture")
+![Alt text](ReadmeFiles/Modular_App.png?raw=true "TCA Architecture")
 
 
 Each module respects SOLID principles:
