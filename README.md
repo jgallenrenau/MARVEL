@@ -20,6 +20,8 @@ The app adheres to SOLID principles as a foundation for creating maintainable, s
 - **Interface Segregation Principle (ISP)**: Modules expose minimal and specific interfaces, ensuring that classes depend only on what they actually use.
 - **Dependency Inversion Principle (DIP)**: High-level modules do not depend on low-level modules but rather on abstractions, enabling flexibility and easier testing.
 
+![Alt text](ReadmeFiles/principle_solid.png?raw=true "Clean Architecture Layers")
+
 
 ### How SOLID Principles Are Applied
 - **View Layer**: The UI components in SwiftUI are kept declarative and only focus on rendering the data provided by the state.
