@@ -1,10 +1,9 @@
 # Marvel Heroes App
 
 <p align="center">
-    ![Alt text](ReadmeFiles/Marvel_Logo.png?raw=true "Tiltle project")
+    <img src="ReadmeFiles/Marvel_Logo.png?raw=true" alt="Alt text" title="Title project">
 </p>
 
-[![Build Status](https://img.shields.io/badge/platforms-iOS%20%7C%20tvOS%20%7C%20macOS%20%7C%20watchOS-green.svg)](https://github.com/Jinxiansen/SwiftUI)
 [![Swift](https://img.shields.io/badge/Swift-6.0-orange.svg)](https://swift.org)
 [![Xcode](https://img.shields.io/badge/Xcode-16.0-blue.svg)](https://developer.apple.com/xcode)
 [![MIT](https://img.shields.io/badge/licenses-MIT-red.svg)](https://opensource.org/licenses/MIT)
