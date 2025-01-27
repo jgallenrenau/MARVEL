@@ -30,4 +30,9 @@ public struct Constants {
     public static func setKeychainHelper(_ helper: KeychainHelperProtocol) {
         keychainHelper = helper
     }
+    
+    public struct PaginationConfig {
+        public static let pageSize = 50
+        public static let thresholdForLoadingMore = PaginationConfig.pageSize/2
+    }
 }

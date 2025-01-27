@@ -41,6 +41,15 @@
           }
         }
       }
+    },
+    "No heroes found" : {
+
+    },
+    "Search for heroes..." : {
+
+    },
+    "Try searching with a different keyword." : {
+
     }
   },
   "version" : "1.0"

@@ -1,4 +1,5 @@
 import SwiftUI
+import Core
 import ComposableArchitecture
 
 struct HeroesListView: View {
@@ -7,33 +8,127 @@ struct HeroesListView: View {
 
     var body: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
-            VStack(spacing: 10) {
+            VStack(spacing: 0) {
+                VStack(spacing: 10) {
+                    ListHeaderView(key: "heroesList_title", bundle: .heroList)
+                    
+                    SearchBar(
+                        text: viewStore.binding(
+                            get: \.searchText,
+                            send: HeroesListFeature.Action.searchTextChanged
+                        )
+                    )
+                    .padding(.horizontal)
+                }
+                .background(Color(UIColor.systemBackground))
                 
-                ListHeaderView(key: "heroesList_title", bundle: .heroList)
-                
-                ZStack {
-                    List {
-                        ForEach(viewStore.heroes) { hero in
-                            HeroesRowView(hero: hero)
-                                .onAppear {
-                                    if let index = viewStore.heroes.firstIndex(of: hero),
-                                       index >= viewStore.heroes.count - HeroesListFeature.Config.thresholdForLoadingMore {
-                                        viewStore.send(.loadMoreHeroes)
+                if viewStore.isLoading && viewStore.heroes.isEmpty {
+
+                    CenteredSpinnerView(isLoading: viewStore.isLoading)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                } else if viewStore.filteredHeroes.isEmpty && !viewStore.searchText.isEmpty {
+
+                    EmptyStateView()
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                } else {
+                    ZStack {
+                        List {
+                            ForEach(viewStore.filteredHeroes, id: \.id) { hero in
+                                HeroesRowView(hero: hero)
+                                    .onAppear {
+                                        if let index = viewStore.heroes.firstIndex(where: { $0.id == hero.id }),
+                                           index >= viewStore.heroes.count - Constants.PaginationConfig.thresholdForLoadingMore {
+                                            viewStore.send(.loadMoreHeroes)
+                                        }
                                     }
+                                    .onTapGesture {
+                                        onHeroSelected(hero)
+                                    }
+                            }
+
+                            if viewStore.isLoading {
+                                HStack {
+                                    Spacer()
+                                    ProgressView()
+                                        .padding()
+                                    Spacer()
                                 }
-                                .onTapGesture {
-                                    onHeroSelected(hero)
-                                }
+                                .frame(maxWidth: .infinity)
+                            }
+                        }
+
+                        if viewStore.isLoading {
+                            CenteredSpinnerView(isLoading: viewStore.isLoading)
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
                         }
                     }
                     .onAppear {
                         viewStore.send(.fetchHeroes)
                     }
-
-                    CenteredSpinnerView(isLoading: viewStore.isLoading)
+                    .listStyle(PlainListStyle())
                 }
             }
         }
+    }
+}
+
+struct SearchBar: View {
+    @Binding var text: String
+    @FocusState private var isFocused: Bool
+
+    var body: some View {
+        HStack {
+            Image(systemName: "magnifyingglass")
+                .foregroundColor(isFocused ? .gray : .secondary)
+            
+            TextField("Search for heroes...", text: $text)
+                .textFieldStyle(PlainTextFieldStyle())
+                .foregroundColor(.primary)
+                .accentColor(.gray)
+                .disableAutocorrection(true)
+                .autocapitalization(.none)
+                .focused($isFocused)
+
+            if !text.isEmpty {
+                Button(action: {
+                    text = ""
+                }) {
+                    Image(systemName: "xmark.circle.fill")
+                        .foregroundColor(.secondary)
+                }
+                .transition(.scale)
+            }
+        }
+        .padding(10)
+        .background(
+            RoundedRectangle(cornerRadius: 12)
+                .fill(Color(UIColor.systemGray6))
+                .shadow(color: .black.opacity(0.1), radius: 4, x: 0, y: 2)
+        )
+        .padding(.horizontal, 16)
+        .animation(.easeInOut(duration: 0.2), value: text)
+    }
+}
+
+struct EmptyStateView: View {
+    var body: some View {
+        VStack {
+            Image(systemName: "magnifyingglass.circle")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 100, height: 100)
+                .foregroundColor(.gray)
+                .padding(.bottom, 16)
+            
+            Text("No heroes found")
+                .font(.headline)
+                .foregroundColor(.secondary)
+            
+            Text("Try searching with a different keyword.")
+                .font(.subheadline)
+                .foregroundColor(.secondary)
+        }
+        .padding()
     }
 }
 
@@ -42,7 +137,7 @@ func ListHeaderView(key: String, bundle: Bundle) -> some View {
         .font(.largeTitle)
         .fontWeight(.bold)
         .foregroundColor(.primary)
-        .frame(maxWidth: .infinity, alignment: .leading)
+        .frame(maxWidth: .infinity, alignment: .center)
         .padding(.horizontal, 16)
         .padding(.vertical, 5)
         .background(Color(UIColor.systemGray6))
