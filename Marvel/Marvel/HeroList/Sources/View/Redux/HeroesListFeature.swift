@@ -4,17 +4,14 @@ import Core
 
 struct HeroesListFeature: Reducer {
     
-    struct Config {
-        static let pageSize = 20
-        static let thresholdForLoadingMore = 10
-    }
-    
     struct HeroesListEnvironment {
         let fetchHeroes: (Int, Int) async throws -> [Hero]
     }
     
     struct State: Equatable {
         var heroes: [Hero] = []
+        var filteredHeroes: [Hero] = []
+        var searchText: String = ""
         var isLoading: Bool = false
         var offset: Int = 0
         var hasMoreHeroes: Bool = true
@@ -25,6 +22,7 @@ struct HeroesListFeature: Reducer {
         case loadMoreHeroes
         case heroesLoadedSuccess([Hero])
         case heroesLoadedFailure(HeroesListError)
+        case searchTextChanged(String)
     }
     
     enum HeroesListError: Error, Equatable {
@@ -36,17 +34,13 @@ struct HeroesListFeature: Reducer {
     @Dependency(\.fetchHeroes) var fetchHeroes
     
     func reduce(into state: inout State, action: Action) -> Effect<Action> {
-        
         switch action {
-            
         case .fetchHeroes:
             state.isLoading = true
-            
             let offset = state.offset
-            
             return .run { send in
                 do {
-                    let heroes = try await fetchHeroes(offset, Config.pageSize)
+                    let heroes = try await fetchHeroes(offset, Constants.PaginationConfig.pageSize)
                     await send(.heroesLoadedSuccess(heroes))
                 } catch {
                     let mappedError: HeroesListError
@@ -61,15 +55,12 @@ struct HeroesListFeature: Reducer {
             
         case .loadMoreHeroes:
             guard !state.isLoading, state.hasMoreHeroes else { return .none }
-            
-            state.offset += Config.pageSize
+            state.offset += Constants.PaginationConfig.pageSize
             state.isLoading = true
-            
             let offset = state.offset
-            
             return .run { send in
                 do {
-                    let heroes = try await fetchHeroes(offset, Config.pageSize)
+                    let heroes = try await fetchHeroes(offset, Constants.PaginationConfig.pageSize)
                     await send(.heroesLoadedSuccess(heroes))
                 } catch {
                     let mappedError: HeroesListError
@@ -88,18 +79,33 @@ struct HeroesListFeature: Reducer {
             if heroes.isEmpty {
                 state.hasMoreHeroes = false
             } else {
-                state.heroes.append(contentsOf: heroes)
+                let existingHeroIDs = Set(state.heroes.map { $0.id })
+                let uniqueHeroes = heroes.filter { !existingHeroIDs.contains($0.id) }
+                
+                state.heroes.append(contentsOf: uniqueHeroes)
             }
-            
+            state.filteredHeroes = filterHeroes(state.heroes, by: state.searchText)
             state.isLoading = false
-            
             return .none
+
             
         case .heroesLoadedFailure:
             state.isLoading = false
-            
+            return .none
+
+        case let .searchTextChanged(searchText):
+            state.searchText = searchText
+            state.filteredHeroes = filterHeroes(state.heroes, by: searchText)
             return .none
         }
+    }
+}
+
+private extension HeroesListFeature {
+    
+    private func filterHeroes(_ heroes: [Hero], by searchText: String) -> [Hero] {
+        guard !searchText.isEmpty else { return heroes }
+        return heroes.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
     }
 }
 
