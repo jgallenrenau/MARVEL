@@ -55,6 +55,11 @@ TCA is chosen for its ability to:
 - **Scalability**: Makes it easy to add new features while keeping the codebase maintainable.
 
 
+
+![Alt text](ReadmeFiles/TCE_Scheme.png?raw=true "TCA Architecture")
+
+
+
 ### Why Modular Architecture?
 The app is split into the following modules, and each module includes a dedicated `README.md` file to ensure proper documentation and maintainability. These files provide clear guidance on the module's purpose, structure, and any specific details needed for development or integration:
 
@@ -85,8 +90,7 @@ The app is split into the following modules, and each module includes a dedicate
 2. **Encapsulation**: Prevents unnecessary dependencies and ensures a clear separation of concerns.
 3. **Reusability**: Common components in the Core module can be reused across multiple features.
 
-![Alt text](ReadmeFiles/TCE_Scheme.png?raw=true "TCA Architecture")
-
+![Alt text](ReadmeFiles/Modular_App.png.png?raw=true "TCA Architecture")
 
 
 Each module respects SOLID principles:
@@ -114,6 +118,7 @@ The app employs a robust testing strategy, ensuring high code quality and reliab
 1. **Isolation**: Tests are scoped to specific modules, ensuring faster feedback loops.
 2. **Focus**: Each module is responsible for its own tests, making it easier to debug issues.
 3. **Reusability**: Shared test utilities can be placed in the Core module for consistency across tests.
+
 
 ![Alt text](ReadmeFiles/graph_testing.png?raw=true "Graph Testing")
 
