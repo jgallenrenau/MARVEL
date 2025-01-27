@@ -1,14 +1,12 @@
 # Marvel Heroes App
 
 <p align="center">
-  <img src="https://es.wikipedia.org/wiki/Marvel_Comics#/media/Archivo:Marvel_Logo.svg" height="128">
-  <h1 align="center">Marvel APP</h1>
+    ![Alt text](ReadmeFiles/Marvel_Logo.png?raw=true "Tiltle project")
 </p>
 
 [![Build Status](https://img.shields.io/badge/platforms-iOS%20%7C%20tvOS%20%7C%20macOS%20%7C%20watchOS-green.svg)](https://github.com/Jinxiansen/SwiftUI)
 [![Swift](https://img.shields.io/badge/Swift-6.0-orange.svg)](https://swift.org)
-[![Xcode](https://img.shields.io/badge/Xcode-11.0-blue.svg)](https://developer.apple.com/xcode)
-[![Xcode](https://img.shields.io/badge/macOS-15.0-blue.svg)](https://developer.apple.com/macOS)
+[![Xcode](https://img.shields.io/badge/Xcode-16.0-blue.svg)](https://developer.apple.com/xcode)
 [![MIT](https://img.shields.io/badge/licenses-MIT-red.svg)](https://opensource.org/licenses/MIT)
 
 ## Overview
@@ -29,7 +27,7 @@ The app adheres to SOLID principles as a foundation for creating maintainable, s
 - **Business Logic**: Use cases encapsulate domain-specific rules, isolating business logic from the UI.
 - **Repositories**: Abstractions for data sources allow easy swapping of network or local storage implementations without impacting higher-level modules.
 
-![Alt text](README_FILES/clean-architecture.png?raw=true "Clean Architecture Layers")
+![Alt text](ReadmeFiles/clean-architecture.png?raw=true "Clean Architecture Layers")
 
 This adherence ensures the app is highly modular and supports continuous integration and scaling as new features are added.
 
@@ -58,7 +56,7 @@ The app is split into the following modules:
 2. **Encapsulation**: Prevents unnecessary dependencies and ensures a clear separation of concerns.
 3. **Reusability**: Common components in the Core module can be reused across multiple features.
 
-![Modular Architecture Diagram](https://www.merowing.info/multi-store-tca/)
+![Alt text](ReadmeFiles/TCE_Scheme.png?raw=true "TCA Architecture")
 
 Each module respects SOLID principles:
 - **Single Responsibility Principle**: Each module and layer focuses on a single responsibility.
@@ -86,23 +84,23 @@ The app employs a robust testing strategy, ensuring high code quality and reliab
 2. **Focus**: Each module is responsible for its own tests, making it easier to debug issues.
 3. **Reusability**: Shared test utilities can be placed in the Core module for consistency across tests.
 
-![Testing Strategy Diagram](https://via.placeholder.com/800x400.png?text=Testing+Strategy+Diagram)
+![Alt text](ReadmeFiles/graph_testing.png?raw=true "Graph Testing")
 
-[## Visual examples of the App
+## Visual examples of the App
 
-### Search and Detail -  Hero Detail
+### Search and Detail -  Hero List and  Hero Detail
 
 <center><img src=""https://github.com/jgallenrenau/MarvelExample.gif" align="center" /></center>
 
-### DarkMode -Hero List and  Hero Detail
+### DarkMode - Hero List and  Hero Detail
 
 <center><img src=""https://github.com/jgallenrenau/MarvelExample.gif" align="center" /></center>
 
 ## Getting Started
 
 ### Prerequisites
-- Xcode 15+
-- Swift 5.9+
+- Xcode 16.0
+- Swift 6.0
 - CocoaPods or Swift Package Manager
 - Marvel API Key ([Register here](https://developer.marvel.com/))
 
@@ -117,8 +115,8 @@ The app employs a robust testing strategy, ensuring high code quality and reliab
    open Marvel.xcodeproj
    ```
 3. Set up your Marvel API Key in the project:
-   - Navigate to `Core/Network/APIKeys.swift`.
-   - Replace `"YOUR_API_KEY"` with your actual Marvel API key.
+   - Navigate to `Info` tab, from your main project
+   - And replace `"YOUR_PRIVATE_API_KEY"`and `"YOUR_PUBLIC_API_KEY"` with your NEW Marvel API keys ( I am currently using the ones offered by the test )
 
 4. Build and run the project:
    - Select a simulator or connected device and press `Cmd + R`.
@@ -127,7 +125,6 @@ The app employs a robust testing strategy, ensuring high code quality and reliab
 The app relies on the following third-party libraries:
 - **Composable Architecture**: State management and app architecture.
 - **SnapshotTesting**: For UI snapshot tests.
-- **Combine**: Reactive programming for handling asynchronous operations.
 
 ## Future Improvements
 - **Offline Mode**: Add local caching to improve user experience without an internet connection.

@@ -5,9 +5,9 @@
 	<key>CFBundleGetInfoString</key>
 	<string></string>
 	<key>MARVEL_PRIVATE_KEY</key>
-	<string>ab17cbcd9a96c839b91400280fe2911b22f00769</string>
+	<string>188f9a5aa76846d907c41cbea6506e4cc455293f</string>
 	<key>MARVEL_PUBLIC_KEY</key>
-	<string>f72273260db3ac0d725ed41d1667c4a1</string>
+	<string>d575c26d5c746f623518e753921ac847</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
