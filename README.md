@@ -1,10 +1,9 @@
 # Marvel Heroes App
 
 <p align="center">
-    ![Alt text](ReadmeFiles/Marvel_Logo.png?raw=true "Tiltle project")
+    <img src="ReadmeFiles/Marvel_Logo.png?raw=true" alt="Alt text" title="Title project">
 </p>
 
-[![Build Status](https://img.shields.io/badge/platforms-iOS%20%7C%20tvOS%20%7C%20macOS%20%7C%20watchOS-green.svg)](https://github.com/Jinxiansen/SwiftUI)
 [![Swift](https://img.shields.io/badge/Swift-6.0-orange.svg)](https://swift.org)
 [![Xcode](https://img.shields.io/badge/Xcode-16.0-blue.svg)](https://developer.apple.com/xcode)
 [![MIT](https://img.shields.io/badge/licenses-MIT-red.svg)](https://opensource.org/licenses/MIT)
@@ -21,13 +20,16 @@ The app adheres to SOLID principles as a foundation for creating maintainable, s
 - **Interface Segregation Principle (ISP)**: Modules expose minimal and specific interfaces, ensuring that classes depend only on what they actually use.
 - **Dependency Inversion Principle (DIP)**: High-level modules do not depend on low-level modules but rather on abstractions, enabling flexibility and easier testing.
 
+
 ### How SOLID Principles Are Applied
 - **View Layer**: The UI components in SwiftUI are kept declarative and only focus on rendering the data provided by the state.
 - **State Management**: TCA reducers encapsulate state mutations and side effects, ensuring predictable and testable behavior.
 - **Business Logic**: Use cases encapsulate domain-specific rules, isolating business logic from the UI.
 - **Repositories**: Abstractions for data sources allow easy swapping of network or local storage implementations without impacting higher-level modules.
 
+
 ![Alt text](ReadmeFiles/clean-architecture.png?raw=true "Clean Architecture Layers")
+
 
 This adherence ensures the app is highly modular and supports continuous integration and scaling as new features are added.
 
@@ -35,6 +37,7 @@ This adherence ensures the app is highly modular and supports continuous integra
 - **Hero List**: Displays a paginated list of Marvel heroes fetched from the Marvel API.
 - **Hero Detail**: Provides detailed information about a selected hero, including comics and other related data.
 - **Dynamic UI**: Built with SwiftUI for a reactive and declarative user interface.
+
 
 ## Architecture
 This project uses The Composable Architecture (TCA) to ensure consistency, scalability, and testability. It adheres to the SOLID principles and is structured into Swift Package Manager (SPM) modules for better separation of concerns and maintainability.
@@ -45,11 +48,31 @@ TCA is chosen for its ability to:
 - **Simplify Testing**: By isolating side effects and using a pure-functional approach.
 - **Scalability**: Makes it easy to add new features while keeping the codebase maintainable.
 
+
 ### Why Modular Architecture?
-The app is split into the following modules:
-- **Core**: Contains shared utilities, network logic, and base models.
-- **HeroList**: Manages the hero list screen and related business logic.
-- **HeroDetail**: Handles the hero detail screen and its specific functionality.
+The app is split into the following modules, and each module includes a dedicated `README.md` file to ensure proper documentation and maintainability. These files provide clear guidance on the module's purpose, structure, and any specific details needed for development or integration:
+
+- **Core**:  
+  Contains shared utilities, network logic, and base models used across the application.  
+  The `README.md` in this module includes:
+  - A description of the shared utilities and their use cases.
+  - Information about the network layer and its configuration.
+  - Details about the base models and their role in the app's architecture.
+
+- **HeroList**:  
+  Manages the hero list screen and related business logic.  
+  The `README.md` for this module documents:
+  - The structure of the hero list feature.
+  - The interaction between the UI, state management, and business logic.
+  - Guidelines for extending or modifying the hero list functionality.
+
+- **HeroDetail**:  
+  Handles the hero detail screen and its specific functionality.  
+  The `README.md` in this module provides:
+  - An overview of the hero detail screen's purpose.
+  - The flow of data between the view, state management, and use cases.
+  - Instructions for adding new data or features to the detail view.
+
 
 #### Advantages:
 1. **Scalability**: Teams can work on individual modules independently.
@@ -57,6 +80,8 @@ The app is split into the following modules:
 3. **Reusability**: Common components in the Core module can be reused across multiple features.
 
 ![Alt text](ReadmeFiles/TCE_Scheme.png?raw=true "TCA Architecture")
+
+
 
 Each module respects SOLID principles:
 - **Single Responsibility Principle**: Each module and layer focuses on a single responsibility.
@@ -86,6 +111,8 @@ The app employs a robust testing strategy, ensuring high code quality and reliab
 
 ![Alt text](ReadmeFiles/graph_testing.png?raw=true "Graph Testing")
 
+
+<!-- 
 ## Visual examples of the App
 
 ### Search and Detail -  Hero List and  Hero Detail
@@ -95,6 +122,7 @@ The app employs a robust testing strategy, ensuring high code quality and reliab
 ### DarkMode - Hero List and  Hero Detail
 
 <center><img src=""https://github.com/jgallenrenau/MarvelExample.gif" align="center" /></center>
+-->
 
 ## Getting Started
 
@@ -103,6 +131,7 @@ The app employs a robust testing strategy, ensuring high code quality and reliab
 - Swift 6.0
 - CocoaPods or Swift Package Manager
 - Marvel API Key ([Register here](https://developer.marvel.com/))
+
 
 ### Setup
 1. Clone the repository:
@@ -121,18 +150,22 @@ The app employs a robust testing strategy, ensuring high code quality and reliab
 4. Build and run the project:
    - Select a simulator or connected device and press `Cmd + R`.
 
+
 ## Dependencies
 The app relies on the following third-party libraries:
 - **Composable Architecture**: State management and app architecture.
 - **SnapshotTesting**: For UI snapshot tests.
+
 
 ## Future Improvements
 - **Offline Mode**: Add local caching to improve user experience without an internet connection.
 - **Hero Search**: Implement a search feature to filter heroes.
 - **Comics Showcase**: Extend the hero detail view to display comics in a carousel format.
 
+
 ## License
 This project is licensed under the MIT License. See the LICENSE file for details.
+
 
 ## Acknowledgments
 - [Marvel API](https://developer.marvel.com/) for providing the data.
