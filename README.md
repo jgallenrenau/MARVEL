@@ -8,6 +8,7 @@
 [![Xcode](https://img.shields.io/badge/Xcode-16.0-blue.svg)](https://developer.apple.com/xcode)
 [![MIT](https://img.shields.io/badge/licenses-MIT-red.svg)](https://opensource.org/licenses/MIT)
 
+
 ## Overview
 The Marvel Heroes App is a Swift-based iOS application that showcases a list of Marvel superheroes with detailed information for each hero, leveraging the [Marvel API](https://developer.marvel.com/docs). This project was created as part of a technical assessment and demonstrates modern iOS development practices, including The Composable Architecture (TCA), modular architecture, and advanced testing strategies.
 
@@ -19,6 +20,7 @@ The app adheres to SOLID principles as a foundation for creating maintainable, s
 - **Liskov Substitution Principle (LSP)**: Interfaces and base classes are structured so that derived types can be substituted without unexpected behavior.
 - **Interface Segregation Principle (ISP)**: Modules expose minimal and specific interfaces, ensuring that classes depend only on what they actually use.
 - **Dependency Inversion Principle (DIP)**: High-level modules do not depend on low-level modules but rather on abstractions, enabling flexibility and easier testing.
+
 
 ![Alt text](ReadmeFiles/principle_solid.png?raw=true "Clean Architecture Layers")
 
