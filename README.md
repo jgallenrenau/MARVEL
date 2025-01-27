@@ -42,7 +42,7 @@ This adherence ensures the app is highly modular and supports continuous integra
 ## Features
 - **Hero List**: Displays a paginated list of Marvel heroes fetched from the Marvel API.
 - **Hero Detail**: Provides detailed information about a selected hero, including comics and other related data.
-- **Dynamic UI**: Built with SwiftUI for a reactive and declarative user interface.
+- **Hero Search**: A search bar allows users to filter heroes dynamically by name.
 
 
 ## Architecture
@@ -115,7 +115,7 @@ The app employs a robust testing strategy, ensuring high code quality and reliab
 2. **Focus**: Each module is responsible for its own tests, making it easier to debug issues.
 3. **Reusability**: Shared test utilities can be placed in the Core module for consistency across tests.
 
-![Alt text](ReadmeFiles/graph_testing.png?raw=true "Graph Testing")
+![Alt text](ReadmeFiles/testing.png?raw=true "Graph Testing")
 
 
 <!-- 
