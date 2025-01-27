@@ -22,7 +22,9 @@ The app adheres to SOLID principles as a foundation for creating maintainable, s
 - **Dependency Inversion Principle (DIP)**: High-level modules do not depend on low-level modules but rather on abstractions, enabling flexibility and easier testing.
 
 
+
 ![Alt text](ReadmeFiles/principle_solid.png?raw=true "Clean Architecture Layers")
+
 
 
 ### How SOLID Principles Are Applied
