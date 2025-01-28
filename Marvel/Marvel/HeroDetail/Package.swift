@@ -15,6 +15,7 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/pointfreeco/swift-composable-architecture", from: "1.17.1"),
         .package(name: "Core", path: "../Core"),
+            .package(name: "DesignSystem", path: "../DesignSystem"),
         .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", from: "1.11.0")
     ],
     targets: [
@@ -22,6 +23,7 @@ let package = Package(
             name: "HeroDetail",
             dependencies: [
                 "Core",
+                "DesignSystem",
                 .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
             ],
             resources: [
@@ -33,6 +35,7 @@ let package = Package(
             dependencies: [
                 "HeroDetail",
                 "Core",
+                "DesignSystem",
                 .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
             ]
         )

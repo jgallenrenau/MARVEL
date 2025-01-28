@@ -1,6 +1,6 @@
 import Foundation
-import ComposableArchitecture
 import Core
+import ComposableArchitecture
 
 struct HeroesListFeature: Reducer {
     

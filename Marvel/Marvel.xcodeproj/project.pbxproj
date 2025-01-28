@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		140E85762D3F0857000B6F31 /* HeroList in Resources */ = {isa = PBXBuildFile; fileRef = 14664C252D3A6A7D00FFA4A6 /* HeroList */; };
 		141DFEF02D3EF9D200D144F0 /* HeroDetail in Frameworks */ = {isa = PBXBuildFile; productRef = 141DFEEF2D3EF9D200D144F0 /* HeroDetail */; };
+		142B68012D47F10500B8C6F5 /* DesignSystem in Frameworks */ = {isa = PBXBuildFile; productRef = 142B68002D47F10500B8C6F5 /* DesignSystem */; };
 		14647B4C2D3D0DF700FDB12A /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 14647B4B2D3D0DF700FDB12A /* Core */; };
 		14647B4E2D3D111100FDB12A /* HeroList in Frameworks */ = {isa = PBXBuildFile; productRef = 14647B4D2D3D111100FDB12A /* HeroList */; };
 		14664C232D39995300FFA4A6 /* MarvelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14664C222D39995300FFA4A6 /* MarvelTests.swift */; };
@@ -33,6 +34,7 @@
 		14664C222D39995300FFA4A6 /* MarvelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelTests.swift; sourceTree = "<group>"; };
 		14664C252D3A6A7D00FFA4A6 /* HeroList */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = HeroList; sourceTree = "<group>"; };
 		14736BC22D3EF4870010D276 /* HeroDetail */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = HeroDetail; sourceTree = "<group>"; };
+		1475E7372D47DC8F00D8052A /* DesignSystem */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = DesignSystem; sourceTree = "<group>"; };
 		1496B18C2D3EF04300B686B1 /* Core */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Core; sourceTree = "<group>"; };
 		14AE10B22D3D8B03009AC94F /* AppInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInitializer.swift; sourceTree = "<group>"; };
 		14C014B92D37E87C00B19E03 /* Marvel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Marvel.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -50,6 +52,7 @@
 				141DFEF02D3EF9D200D144F0 /* HeroDetail in Frameworks */,
 				14647B4E2D3D111100FDB12A /* HeroList in Frameworks */,
 				14647B4C2D3D0DF700FDB12A /* Core in Frameworks */,
+				142B68012D47F10500B8C6F5 /* DesignSystem in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,6 +116,7 @@
 			children = (
 				14A0B86C2D38F48400438F1E /* App */,
 				1496B18C2D3EF04300B686B1 /* Core */,
+				1475E7372D47DC8F00D8052A /* DesignSystem */,
 				14664C252D3A6A7D00FFA4A6 /* HeroList */,
 				14736BC22D3EF4870010D276 /* HeroDetail */,
 			);
@@ -147,6 +151,7 @@
 				14647B4B2D3D0DF700FDB12A /* Core */,
 				14647B4D2D3D111100FDB12A /* HeroList */,
 				141DFEEF2D3EF9D200D144F0 /* HeroDetail */,
+				142B68002D47F10500B8C6F5 /* DesignSystem */,
 			);
 			productName = Marvel;
 			productReference = 14C014B92D37E87C00B19E03 /* Marvel.app */;
@@ -385,7 +390,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = XMY6QG9YH8;
+				DEVELOPMENT_TEAM = JUL8U4DYU9;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = NO;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -429,7 +434,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = XMY6QG9YH8;
+				DEVELOPMENT_TEAM = JUL8U4DYU9;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = NO;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -550,6 +555,10 @@
 		141DFEEF2D3EF9D200D144F0 /* HeroDetail */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = HeroDetail;
+		};
+		142B68002D47F10500B8C6F5 /* DesignSystem */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DesignSystem;
 		};
 		14647B4B2D3D0DF700FDB12A /* Core */ = {
 			isa = XCSwiftPackageProductDependency;
