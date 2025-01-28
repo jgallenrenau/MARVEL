@@ -17,27 +17,37 @@ The Marvel Heroes App is a Swift-based iOS application that showcases a list of 
 ## Visual examples of the App
 
 ### Splash View
-
 <p align="center">
   <img src="https://github.com/jgallenrenau/Marvel/blob/develop//ReadmeFiles/splashView.gif" width="350" />
 </p>
+<p align="center">
+  The splash screen appears when the app is launched, displaying the Marvel logo with a smooth animation to enhance the user experience.
+</p>
 
 ### Hero Lists and Pagination
-
 <p align="center">
   <img src="https://github.com/jgallenrenau/Marvel/blob/develop//ReadmeFiles/Pagination.gif" width="350" />
 </p>
+<p align="center">
+  Displays a list of Marvel heroes fetched from the API. The app uses infinite scrolling to load more heroes as the user scrolls down, ensuring a seamless experience.
+</p>
 
 ### Hero Search
-
 <p align="center">
   <img src="https://github.com/jgallenrenau/Marvel/blob/develop//ReadmeFiles/Search.gif" width="350" />
 </p>
-### Hero Detail
+<p align="center">
+  A dynamic search feature that allows users to quickly find heroes by name. The search results are updated in real-time as the user types.
+</p>
 
+### Hero Detail
 <p align="center">
   <img src="https://github.com/jgallenrenau/Marvel/blob/develop//ReadmeFiles/DetailHero.gif" width="350" />
 </p>
+<p align="center">
+  Displays detailed information about a selected hero, including their biography, comics, series, and other related data.
+</p>
+
 
 # How it was built
 
