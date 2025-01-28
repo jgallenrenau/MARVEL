@@ -84,6 +84,14 @@ The app is split into the following modules, and each module includes a dedicate
   - The flow of data between the view, state management, and use cases.
   - Instructions for adding new data or features to the detail view.
 
+- **DesignSystem**:
+  Provides a centralized system for UI components, styles, animations, and themes to maintain consistency across the app.
+  The `README.md` in this module includes:
+  - An overview of the purpose of the Design System and how it enhances the UI consistency.
+  - A breakdown of reusable components such as DSHeaderView, DSSearchBar, and DSNoResultsView.
+  - A list of available styles, including colors, fonts, spacings, shadows, and opacity levels.
+  - A guide on how to extend and maintain the design system for future UI updates.
+
 
 #### Advantages:
 1. **Scalability**: Teams can work on individual modules independently.
