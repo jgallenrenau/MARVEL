@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "marvel_only_letters.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
