@@ -18,7 +18,7 @@ The Marvel Heroes App is a Swift-based iOS application that showcases a list of 
 
 ### Splash View
 
-<center><img src="https://github.com/jgallenrenau/Marvel/ReadmeFiles/splashView.gif" align="center" /></center>
+<center><img src="https://github.com/jgallenrenau/Marvel/blob/develop//ReadmeFiles/splashView.gif" align="center" /></center>
 
 ### Hero Lists
 
