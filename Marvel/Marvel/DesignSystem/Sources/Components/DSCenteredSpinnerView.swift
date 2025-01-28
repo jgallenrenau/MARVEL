@@ -8,7 +8,7 @@ public func DSCenteredSpinnerView(isLoading: Bool) -> some View {
                 .padding()
                 .background(
                     RoundedRectangle(cornerRadius: DSCorner.medium)
-                        .fill(DSColors.background.opacity(DSOpacity.xLarge))
+                        .fill(DSColors.background.opacity(DSOpacity.dotEight))
                 )
                 .shadow(color: DSShadows.medium, radius: DSCorner.medium)
         }
@@ -20,6 +20,6 @@ public func DSCenteredSpinnerView(isLoading: Bool) -> some View {
         DSCenteredSpinnerView(isLoading: true)
             .previewLayout(.sizeThatFits)
             .padding(DSPadding.normal)
-            .background(DSColors.gray.opacity(DSOpacity.xSmall))
+            .background(DSColors.gray.opacity(DSOpacity.dotOne))
     }
 }

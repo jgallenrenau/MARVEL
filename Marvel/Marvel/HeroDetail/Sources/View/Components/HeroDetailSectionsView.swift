@@ -5,16 +5,25 @@ struct HeroDetailSectionsView: View {
     let hero: HeroDetail
 
     var body: some View {
+        
         VStack(alignment: .leading, spacing: DSPadding.large) {
-            heroDetailSection(titleKey: "heroDetail_comics", items: hero.comics)
-            heroDetailSection(titleKey: "heroDetail_series", items: hero.series)
-            heroDetailSection(titleKey: "heroDetail_stories", items: hero.stories)
-            heroDetailSection(titleKey: "heroDetail_events", items: hero.events)
+            if !hero.comics.isEmpty {
+                heroDetailSection(titleKey: "heroDetail_comics", items: hero.comics)
+            }
+            if !hero.series.isEmpty {
+                heroDetailSection(titleKey: "heroDetail_series", items: hero.series)
+            }
+            if !hero.stories.isEmpty {
+                heroDetailSection(titleKey: "heroDetail_stories", items: hero.stories)
+            }
+            if !hero.events.isEmpty {
+                heroDetailSection(titleKey: "heroDetail_events", items: hero.events)
+            }
         }
         .padding(DSPadding.normal)
         .background(
             RoundedRectangle(cornerRadius: DSCorner.large)
-                .fill(DSColors.black.opacity(DSOpacity.medium))
+                .fill(DSColors.black.opacity(DSOpacity.dotFour))
         )
         .padding(.horizontal, DSPadding.large)
         .padding(.vertical, DSPadding.large)
@@ -24,21 +33,12 @@ struct HeroDetailSectionsView: View {
         VStack(alignment: .leading, spacing: DSPadding.small) {
             DSSectionHeaderView(localizedKey: titleKey, bundle: .heroDetail)
 
-            if items.isEmpty {
-                Text("heroDetail_Without_Items".localized())
+            ForEach(items, id: \.self) { item in
+                Text("• \(item)")
                     .font(DSFonts.callout)
-                    .foregroundColor(DSColors.errorText)
-                    .italic()
+                    .foregroundColor(DSColors.white)
                     .padding(.horizontal)
                     .padding(.vertical, DSPadding.xSmall)
-            } else {
-                ForEach(items, id: \.self) { item in
-                    Text("• \(item)")
-                        .font(DSFonts.callout)
-                        .foregroundColor(DSColors.white)
-                        .padding(.horizontal)
-                        .padding(.vertical, DSPadding.xSmall)
-                }
             }
         }
         .background(Color.clear)
@@ -60,5 +60,5 @@ struct HeroDetailSectionsView: View {
     )
     .previewLayout(.sizeThatFits)
     .padding(DSPadding.normal)
-    .background(DSColors.black.opacity(DSOpacity.medium))
+    .background(DSColors.black.opacity(DSOpacity.dotFour))
 }

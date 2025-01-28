@@ -54,5 +54,5 @@ struct HeroDetailImageView: View {
     )
     .previewLayout(.sizeThatFits)
     .padding(DSPadding.normal)
-    .background(DSColors.gray.opacity(DSOpacity.xSmall))
+    .background(DSColors.gray.opacity(DSOpacity.dotOne))
 }

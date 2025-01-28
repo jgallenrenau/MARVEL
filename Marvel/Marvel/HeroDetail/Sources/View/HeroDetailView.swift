@@ -8,7 +8,7 @@ struct HeroDetailView: View {
     var body: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
             ZStack {
-                DSColors.black.opacity(DSOpacity.large).ignoresSafeArea()
+                DSColors.background.ignoresSafeArea()
 
                 if viewStore.isLoading {
                     loadingView
@@ -56,10 +56,11 @@ struct HeroDetailView: View {
             .clipShape(RoundedRectangle(cornerRadius: DSCorner.xLarge))
             .overlay(
                 RoundedRectangle(cornerRadius: DSCorner.xLarge)
-                    .stroke(DSColors.white.opacity(DSOpacity.large), lineWidth: 2)
+                    .stroke(DSColors.white.opacity(DSOpacity.dotSix), lineWidth: 2)
             )
             .shadow(color: DSShadows.medium, radius: DSImage.imageShadowRadius, x: 0, y: 2)
             .padding(.horizontal, DSPadding.large)
+            .padding(.top, DSPadding.large)
     }
 
     // MARK: - Hero Info View
@@ -71,11 +72,11 @@ struct HeroDetailView: View {
                 .foregroundColor(DSColors.primaryText)
                 .multilineTextAlignment(.center)
 
-            Text(hero.description.isEmpty ? "No description available." : hero.description)
+            Text(hero.description.isEmpty ? "" : hero.description)
                 .font(DSFonts.body)
                 .foregroundColor(DSColors.secondaryText)
                 .multilineTextAlignment(.center)
-                .padding(.horizontal, DSPadding.normal)
+                .padding(.horizontal, DSPadding.large)
         }
     }
 }
@@ -103,5 +104,5 @@ struct HeroDetailView: View {
     )
     .previewLayout(.sizeThatFits)
     .padding(DSPadding.normal)
-    .background(DSColors.black.opacity(DSOpacity.medium))
+    .background(DSColors.black.opacity(DSOpacity.dotFour))
 }

@@ -30,5 +30,5 @@ public func DSNoResultsView(imageName: String,
     )
     .previewLayout(.sizeThatFits)
     .padding()
-    .background(Color.gray.opacity(DSOpacity.small))
+    .background(Color.gray.opacity(DSOpacity.dotTwo))
 }
