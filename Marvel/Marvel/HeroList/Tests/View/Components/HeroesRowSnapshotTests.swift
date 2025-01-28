@@ -1,9 +1,9 @@
 import XCTest
-import SnapshotTesting
 import SwiftUI
-@testable import HeroDetail
+import SnapshotTesting
+@testable import HeroList
 
-final class HeroDetailImageViewSnapshotTests: XCTestCase {
+final class HeroesRowViewSnapshotTests: XCTestCase {
 
     private let devices: [String: ViewImageConfig] = [
         "iPhone SE": .iPhoneSe,
@@ -14,16 +14,22 @@ final class HeroDetailImageViewSnapshotTests: XCTestCase {
         "iPad Pro 12.9": .iPadPro12_9
     ]
 
-    func testHeroDetailImageViewSnapshot() {
-        let imageURL = URL(string: "http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784.jpg")!
+    func testHeroesRowViewSnapshot() {
+        let hero = Hero(
+            id: 1,
+            name: "Spider-Man",
+            description: "A friendly neighborhood superhero.",
+            thumbnailURL: URL(string: "https://via.placeholder.com/150")!
+        )
+        
+        let view = HeroesRowView(hero: hero)
+            .frame(width: 300, height: 100)
 
         for (deviceName, config) in devices {
-            let view = HeroDetailImageView(imageURL: imageURL)
-
             assertSnapshot(
                 of: view,
                 as: .image(layout: .device(config: config)),
-                named: "HeroDetailImageView_\(deviceName)"
+                named: "HeroesRowView_\(deviceName)"
             )
         }
     }
