@@ -94,10 +94,15 @@ TCA is chosen for its ability to:
 - **Scalability**: Makes it easy to add new features while keeping the codebase maintainable.
 
 
+### Layered Structure
+Each module follows a layered architecture:
+1. **View**: Built with SwiftUI, handles the user interface.
+2. **State and Action**: Defines state and user interactions using TCA’s reducer pattern.
+3. **Business Logic**: Encapsulated in Use Cases.
+4. **Repository**: Interfaces for data access, whether local or remote.
+
 
 ![Alt text](ReadmeFiles/TCE_Scheme.png?raw=true "TCA Architecture")
-
-
 
 ### Why Modular Architecture?
 The app is split into the following modules, and each module includes a dedicated `README.md` file to ensure proper documentation and maintainability. These files provide clear guidance on the module's purpose, structure, and any specific details needed for development or integration:
@@ -143,13 +148,6 @@ The app is split into the following modules, and each module includes a dedicate
 Each module respects SOLID principles:
 - **Single Responsibility Principle**: Each module and layer focuses on a single responsibility.
 - **Dependency Inversion**: Layers interact through clearly defined interfaces.
-
-### Layered Structure
-Each module follows a layered architecture:
-1. **View**: Built with SwiftUI, handles the user interface.
-2. **State and Action**: Defines state and user interactions using TCA’s reducer pattern.
-3. **Business Logic**: Encapsulated in Use Cases.
-4. **Repository**: Interfaces for data access, whether local or remote.
 
 The View layer interacts with Redux-like state management provided by TCA reducers. These reducers communicate with use cases and repositories, ensuring clean separation of UI, business logic, and data access.
 
