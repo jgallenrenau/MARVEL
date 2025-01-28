@@ -80,7 +80,7 @@ struct HeroesRowView: View {
                 .fontWeight(.bold)
                 .foregroundColor(DSColors.primaryText)
 
-            Text(hero.description.isEmpty ? "No description available." : hero.description)
+            Text(hero.description.isEmpty ? "" : hero.description)
                 .font(DSFonts.subheadline)
                 .foregroundColor(DSColors.secondaryText)
                 .lineLimit(2)
@@ -96,5 +96,5 @@ struct HeroesRowView: View {
     }
     .previewLayout(.sizeThatFits)
     .padding(DSPadding.normal)
-    .background(DSColors.gray.opacity(DSOpacity.xSmall))
+    .background(DSColors.gray.opacity(DSOpacity.dotOne))
 }

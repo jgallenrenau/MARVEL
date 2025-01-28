@@ -11,13 +11,13 @@ public struct DSSearchBar: View {
 
     public init(
         text: Binding<String>,
-        placeholder: String = "searchBar_placeholder",
-        bundle: Bundle = .main,
+        placeholder: String = "searchBar_placeholder".localized(),
+        bundle: Bundle,
         icon: String = "magnifyingglass",
         clearIcon: String = "xmark.circle.fill"
     ) {
         self._text = text
-        self.placeholder = placeholder
+        self.placeholder = "Search for heroes..."
         self.bundle = bundle
         self.icon = icon
         self.clearIcon = clearIcon
@@ -47,11 +47,17 @@ public struct DSSearchBar: View {
             }
         }
         .padding(DSPadding.small)
+        .frame(height: 60)
         .background(
             RoundedRectangle(cornerRadius: DSCorner.large)
                 .fill(DSColors.searchBarBackground)
                 .shadow(color: DSShadows.small, radius: DSCorner.xSmall, x: 0, y: 2)
         )
+        .overlay(
+            RoundedRectangle(cornerRadius: DSCorner.large)
+                .stroke(DSColors.gray.opacity(DSOpacity.dotFour), lineWidth: 2)
+        )
+
         .padding(.horizontal, DSPadding.normal)
         .animation(.easeInOut(duration: DSTimeAnimation.fast), value: text)
     }
@@ -75,5 +81,5 @@ public extension String {
     )
     .previewLayout(.sizeThatFits)
     .padding(DSPadding.normal)
-    .background(DSColors.gray.opacity(DSOpacity.small))
+    .background(DSColors.gray.opacity(DSOpacity.dotTwo))
 }

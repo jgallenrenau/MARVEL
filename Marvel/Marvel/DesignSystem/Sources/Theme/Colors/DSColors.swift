@@ -9,4 +9,5 @@ public struct DSColors {
     public static let white = Color.white
     public static let black = Color.black.opacity(0.4)
     public static let gray = Color.gray
+    public static let backgroundRed = Color.red
 }
