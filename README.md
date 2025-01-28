@@ -201,9 +201,7 @@ The app relies on the following third-party libraries:
 
 ## Future Improvements
 - **Offline Mode**: Add local caching to improve user experience without an internet connection.
-- **Hero Search**: Implement a search feature to filter heroes.
 - **Comics Showcase**: Extend the hero detail view to display comics in a carousel format.
-
 
 ## License
 This project is licensed under the MIT License. See the LICENSE file for details.
