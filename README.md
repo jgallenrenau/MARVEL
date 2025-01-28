@@ -10,7 +10,26 @@
 
 
 ## Overview
+
 The Marvel Heroes App is a Swift-based iOS application that showcases a list of Marvel superheroes with detailed information for each hero, leveraging the [Marvel API](https://developer.marvel.com/docs). This project was created as part of a technical assessment and demonstrates modern iOS development practices, including The Composable Architecture (TCA), modular architecture, and advanced testing strategies.
+
+
+## Visual examples of the App
+
+### Splash View
+
+<center><img src=""https://github.com/jgallenrenau/SplashView.gif" align="center" /></center>
+
+### Hero List and Search
+
+<center><img src=""https://github.com/jgallenrenau/Search.gif" align="center" /></center>
+
+### Detail Hero
+
+<center><img src=""https://github.com/jgallenrenau/DetailHero.gif" align="center" /></center>
+
+
+# How it was built
 
 ## Why SOLID Principles?
 The app adheres to SOLID principles as a foundation for creating maintainable, scalable, and robust software:
@@ -129,20 +148,6 @@ The app employs a robust testing strategy, ensuring high code quality and reliab
 
 ![Alt text](ReadmeFiles/testing.png?raw=true "Graph Testing")
 
-
-
-<!-- 
-## Visual examples of the App
-
-### Search and Detail -  Hero List and  Hero Detail
-
-<center><img src=""https://github.com/jgallenrenau/MarvelExample.gif" align="center" /></center>
-
-### DarkMode - Hero List and  Hero Detail
-
-<center><img src=""https://github.com/jgallenrenau/MarvelExample.gif" align="center" /></center>
--->
-
 ## Getting Started
 
 ### Prerequisites
@@ -191,3 +196,5 @@ This project is licensed under the MIT License. See the LICENSE file for details
 - [Point-Free](https://www.pointfree.co/) for their work on The Composable Architecture.
 
 ---
+
+
