@@ -1,6 +1,7 @@
 import SwiftUI
 import Core
 import ComposableArchitecture
+import DesignSystem
 
 struct HeroesListView: View {
     let store: StoreOf<HeroesListFeature>
@@ -8,169 +9,114 @@ struct HeroesListView: View {
 
     var body: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
-            VStack(spacing: 0) {
-                VStack(spacing: 10) {
-                    ListHeaderView(key: "heroesList_title", bundle: .heroList)
-                    
-                    SearchBar(
-                        text: viewStore.binding(
-                            get: \.searchText,
-                            send: HeroesListFeature.Action.searchTextChanged
-                        )
-                    )
-                    .padding(.horizontal)
-                }
-                .background(Color(UIColor.systemBackground))
-                
-                if viewStore.isLoading && viewStore.heroes.isEmpty {
-
-                    CenteredSpinnerView(isLoading: viewStore.isLoading)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                } else if viewStore.filteredHeroes.isEmpty && !viewStore.searchText.isEmpty {
-
-                    EmptyStateView()
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                } else {
-                    ZStack {
-                        List {
-                            ForEach(viewStore.filteredHeroes, id: \.id) { hero in
-                                HeroesRowView(hero: hero)
-                                    .onAppear {
-                                        if let index = viewStore.heroes.firstIndex(where: { $0.id == hero.id }),
-                                           index >= viewStore.heroes.count - Constants.PaginationConfig.thresholdForLoadingMore {
-                                            viewStore.send(.loadMoreHeroes)
-                                        }
-                                    }
-                                    .onTapGesture {
-                                        onHeroSelected(hero)
-                                    }
-                            }
-
-                            if viewStore.isLoading {
-                                HStack {
-                                    Spacer()
-                                    ProgressView()
-                                        .padding()
-                                    Spacer()
-                                }
-                                .frame(maxWidth: .infinity)
-                            }
-                        }
-
-                        if viewStore.isLoading {
-                            CenteredSpinnerView(isLoading: viewStore.isLoading)
-                                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        }
-                    }
-                    .onAppear {
-                        viewStore.send(.fetchHeroes)
-                    }
-                    .listStyle(PlainListStyle())
-                }
+            VStack(spacing: DSPadding.small) {
+                headerView(viewStore: viewStore)
+                contentView(viewStore: viewStore)
             }
+            .background(DSColors.background)
         }
     }
-}
 
-struct SearchBar: View {
-    @Binding var text: String
-    @FocusState private var isFocused: Bool
+    // MARK: - Header
+    private func headerView(viewStore: ViewStore<HeroesListFeature.State, HeroesListFeature.Action>) -> some View {
+        VStack(spacing: DSPadding.xSmall) {
+            DSHeaderView(key: "heroesList_title".localized(), bundle: .heroList)
 
-    var body: some View {
-        HStack {
-            Image(systemName: "magnifyingglass")
-                .foregroundColor(isFocused ? .gray : .secondary)
-            
-            TextField("Search for heroes...", text: $text)
-                .textFieldStyle(PlainTextFieldStyle())
-                .foregroundColor(.primary)
-                .accentColor(.gray)
-                .disableAutocorrection(true)
-                .autocapitalization(.none)
-                .focused($isFocused)
-
-            if !text.isEmpty {
-                Button(action: {
-                    text = ""
-                }) {
-                    Image(systemName: "xmark.circle.fill")
-                        .foregroundColor(.secondary)
-                }
-                .transition(.scale)
-            }
+            DSSearchBar(
+                text: viewStore.binding(
+                    get: \.searchText,
+                    send: HeroesListFeature.Action.searchTextChanged
+                ),
+                placeholder: "heroesList_search_placeholder".localized(),
+                bundle: .heroList,
+                icon: "magnifyingglass",
+                clearIcon: "xmark.circle.fill"
+            )
         }
-        .padding(10)
-        .background(
-            RoundedRectangle(cornerRadius: 12)
-                .fill(Color(UIColor.systemGray6))
-                .shadow(color: .black.opacity(0.1), radius: 4, x: 0, y: 2)
+        .padding(DSPadding.normal)
+        .background(DSColors.background)
+    }
+
+    // MARK: - Content View
+    private func contentView(viewStore: ViewStore<HeroesListFeature.State, HeroesListFeature.Action>) -> some View {
+        if viewStore.isLoading && viewStore.heroes.isEmpty {
+            return AnyView(loadingView)
+        } else if viewStore.filteredHeroes.isEmpty && !viewStore.searchText.isEmpty {
+            return AnyView(noResultsView)
+        } else {
+            return AnyView(heroesListView(viewStore: viewStore))
+        }
+    }
+
+    // MARK: - Loading View
+    private var loadingView: some View {
+        DSCenteredSpinnerView(isLoading: true)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(DSColors.background)
+    }
+
+    // MARK: - No Results View
+    private var noResultsView: some View {
+        DSNoResultsView(
+            imageName: "magnifyingglass.circle",
+            title: "noResultsView_title".localized(bundle: .heroList),
+            message: "noResultsView_message".localized(bundle: .heroList)
         )
-        .padding(.horizontal, 16)
-        .animation(.easeInOut(duration: 0.2), value: text)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(DSColors.background)
     }
-}
 
-struct EmptyStateView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "magnifyingglass.circle")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 100, height: 100)
-                .foregroundColor(.gray)
-                .padding(.bottom, 16)
-            
-            Text("No heroes found")
-                .font(.headline)
-                .foregroundColor(.secondary)
-            
-            Text("Try searching with a different keyword.")
-                .font(.subheadline)
-                .foregroundColor(.secondary)
+    // MARK: - Heroes List View
+    private func heroesListView(viewStore: ViewStore<HeroesListFeature.State, HeroesListFeature.Action>) -> some View {
+        ZStack {
+            List {
+                ForEach(viewStore.filteredHeroes, id: \.id) { hero in
+                    HeroesRowView(hero: hero)
+                        .onAppear {
+                            handlePagination(for: hero, in: viewStore)
+                        }
+                        .onTapGesture {
+                            onHeroSelected(hero)
+                        }
+                }
+
+                if viewStore.isLoading {
+                    listLoadingIndicator
+                }
+            }
+            .listStyle(PlainListStyle())
+
+            if viewStore.isLoading {
+                DSCenteredSpinnerView(isLoading: viewStore.isLoading)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+            }
         }
-        .padding()
+        .onAppear {
+            viewStore.send(.fetchHeroes)
+        }
     }
-}
 
-func ListHeaderView(key: String, bundle: Bundle) -> some View {
-    Text(key.localized(bundle: bundle))
-        .font(.largeTitle)
-        .fontWeight(.bold)
-        .foregroundColor(.primary)
-        .frame(maxWidth: .infinity, alignment: .center)
-        .padding(.horizontal, 16)
-        .padding(.vertical, 5)
-        .background(Color(UIColor.systemGray6))
-}
-
-struct CenteredSpinnerView: View {
-    let isLoading: Bool
-
-    var body: some View {
-        if isLoading {
+    // MARK: - List Loading Indicator
+    private var listLoadingIndicator: some View {
+        HStack {
+            Spacer()
             ProgressView()
-                .scaleEffect(1.5)
-                .padding()
-                .background(
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(Color(.systemBackground).opacity(0.8))
-                )
-                .shadow(radius: 10)
+                .padding(DSPadding.normal)
+            Spacer()
+        }
+        .frame(maxWidth: .infinity)
+    }
+
+    // MARK: - Pagination Handling
+    private func handlePagination(for hero: Hero, in viewStore: ViewStore<HeroesListFeature.State, HeroesListFeature.Action>) {
+        if let index = viewStore.heroes.firstIndex(where: { $0.id == hero.id }),
+           index >= viewStore.heroes.count - Constants.PaginationConfig.thresholdForLoadingMore {
+            viewStore.send(.loadMoreHeroes)
         }
     }
 }
 
-struct TitleHeaderView: View {
-    var body: some View {
-        Text("heroesList_title".localized(bundle: .heroList))
-            .font(.largeTitle)
-            .fontWeight(.bold)
-            .foregroundColor(.primary)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.vertical, 10)
-            .background(Color(.clear))
-    }
-}
+// MARK: - Extensions
 
 public extension String {
     func localized(bundle: Bundle = .main, tableName: String = "Localizable") -> String {
@@ -182,8 +128,45 @@ public extension Bundle {
     static var heroList: Bundle {
         return .module
     }
-    
-    static var heroDetail: Bundle {
-        return .module
-    }
+}
+
+// MARK: - Preview
+#Preview {
+    HeroesListView(
+        store: Store(
+            initialState: HeroesListFeature.State(
+                heroes: [
+                    Hero(
+                        id: 1,
+                        name: "Spider-Man",
+                        description: "A superhero with spider-like abilities.",
+                        thumbnailURL: URL(string: "https://via.placeholder.com/150")!
+                    ),
+                    Hero(
+                        id: 2,
+                        name: "Iron Man",
+                        description: "A genius inventor in a high-tech suit.",
+                        thumbnailURL: URL(string: "https://via.placeholder.com/150")!
+                    )
+                ],
+                filteredHeroes: [
+                    Hero(
+                        id: 1,
+                        name: "Spider-Man",
+                        description: "A superhero with spider-like abilities.",
+                        thumbnailURL: URL(string: "https://via.placeholder.com/150")!
+                    )
+                ],
+                searchText: "",
+                isLoading: false
+            ),
+            reducer: { HeroesListFeature() }
+        ),
+        onHeroSelected: { hero in
+            print("Selected hero: \(hero.name)")
+        }
+    )
+    .previewLayout(.sizeThatFits)
+    .padding(DSPadding.normal)
+    .background(DSColors.gray.opacity(DSOpacity.xSmall))
 }

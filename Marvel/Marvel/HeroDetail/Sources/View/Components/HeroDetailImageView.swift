@@ -1,40 +1,58 @@
 import SwiftUI
+import DesignSystem
 
 struct HeroDetailImageView: View {
     let imageURL: URL
+    @StateObject private var motionManager = DSParallaxMotionManager()
 
     var body: some View {
         AsyncImage(url: imageURL) { phase in
             switch phase {
             case .empty:
-                ProgressView()
-                    .frame(width: 400, height: 400)
-                    .background(Color.gray.opacity(0.3))
-                    .cornerRadius(10)
+                placeholderView
             case .success(let image):
-                image
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 400, height: 400)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .shadow(radius: 5)
+                imageView(image)
             case .failure:
-                Image(systemName: "photo")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 400, height: 400)
-                    .foregroundColor(.gray)
-                    .background(Color.gray.opacity(0.3))
-                    .cornerRadius(10)
+                errorView
             @unknown default:
                 EmptyView()
             }
         }
+        .frame(width: DSImage.defaultSize, height: DSImage.defaultSize)
+        .clipShape(RoundedRectangle(cornerRadius: DSImage.imageCornerRadius))
+        .shadow(radius: DSImage.imageShadowRadius)
+        .offset(x: motionManager.xOffset, y: motionManager.yOffset)
+        .animation(.easeInOut(duration: 0.2), value: motionManager.xOffset)
+    }
+
+    private var placeholderView: some View {
+        ProgressView()
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(DSImage.placeholderBackground)
+    }
+
+    private func imageView(_ image: Image) -> some View {
+        image
+            .resizable()
+            .scaledToFill()
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+
+    private var errorView: some View {
+        Image(systemName: "photo")
+            .resizable()
+            .scaledToFit()
+            .foregroundColor(DSImage.errorIconColor)
+            .background(DSImage.placeholderBackground)
     }
 }
 
+// MARK: - Preview
 #Preview {
     HeroDetailImageView(
         imageURL: URL(string: "http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784.jpg")!
     )
+    .previewLayout(.sizeThatFits)
+    .padding(DSPadding.normal)
+    .background(DSColors.gray.opacity(DSOpacity.xSmall))
 }

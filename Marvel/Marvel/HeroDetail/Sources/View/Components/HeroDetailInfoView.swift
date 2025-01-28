@@ -1,4 +1,5 @@
 import SwiftUI
+import DesignSystem
 
 struct HeroDetailInfoView: View {
     let name: String
@@ -10,15 +11,15 @@ struct HeroDetailInfoView: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 16) {
+            VStack(alignment: .leading, spacing: DSPadding.normal) {
                 Text(name)
-                    .font(.largeTitle)
+                    .font(DSFonts.title)
                     .fontWeight(.bold)
                     .multilineTextAlignment(.center)
 
                 Text(description.isEmpty ? "No description available." : description)
-                    .font(.body)
-                    .foregroundColor(.secondary)
+                    .font(DSFonts.body)
+                    .foregroundColor(DSColors.secondaryText)
 
                 if !comics.isEmpty {
                     SectionView(title: "Comics", items: comics)
@@ -36,7 +37,7 @@ struct HeroDetailInfoView: View {
                     SectionView(title: "Events", items: events)
                 }
             }
-            .padding()
+            .padding(DSPadding.normal)
         }
     }
 }
@@ -46,19 +47,22 @@ struct SectionView: View {
     let items: [String]
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: DSPadding.small) {
             Text(title)
-                .font(.headline)
-                .padding(.bottom, 4)
+                .font(DSFonts.headline)
+                .padding(.bottom, DSPadding.xSmall)
+                .foregroundColor(DSColors.gray)
 
             ForEach(items, id: \.self) { item in
                 Text("• \(item)")
-                    .font(.body)
+                    .font(DSFonts.body)
+                    .foregroundColor(DSColors.gray)
             }
         }
     }
 }
 
+// MARK: - Preview
 #Preview {
     HeroDetailInfoView(
         name: "Spider-Man",
@@ -69,3 +73,4 @@ struct SectionView: View {
         events: ["Event 1", "Event 2"]
     )
 }
+
