@@ -32,7 +32,7 @@ public struct Constants {
     }
     
     public struct PaginationConfig {
-        public static let pageSize = 50
+        public static let pageSize = 20
         public static let thresholdForLoadingMore = PaginationConfig.pageSize/2
     }
 }

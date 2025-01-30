@@ -6,16 +6,7 @@ final class HeroDetailRepositoryTests: XCTestCase {
     func testFetchHeroDetailSuccess() async throws {
         let mockDataSource = HeroDetailDataSourceMock()
         let repository = HeroDetailRepository(dataSource: mockDataSource)
-        let mockHeroDetail = HeroDetail(
-            id: 1,
-            name: "Spider-Man",
-            description: "A friendly neighborhood superhero.",
-            thumbnailURL: URL(string: "https://example.com/image.jpg")!,
-            comics: ["Comic 1"],
-            series: ["Series 1"],
-            stories: ["Story 1"],
-            events: ["Event 1"]
-        )
+
         mockDataSource.mockResponse = HeroDetailResponseDTO(
             id: 1,
             name: "Spider-Man",
