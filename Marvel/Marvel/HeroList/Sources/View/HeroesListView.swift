@@ -1,5 +1,4 @@
 import SwiftUI
-import Core
 import ComposableArchitecture
 import DesignSystem
 
@@ -73,7 +72,7 @@ struct HeroesListView: View {
                 ForEach(viewStore.filteredHeroes, id: \.id) { hero in
                     HeroesRowView(hero: hero)
                         .onAppear {
-                            handlePagination(for: hero, in: viewStore)
+                            viewStore.send(.shouldLoadMoreHeroes(hero))
                         }
                         .onTapGesture {
                             onHeroSelected(hero)
@@ -105,14 +104,6 @@ struct HeroesListView: View {
             Spacer()
         }
         .frame(maxWidth: .infinity)
-    }
-
-    // MARK: - Pagination Handling
-    private func handlePagination(for hero: Hero, in viewStore: ViewStore<HeroesListFeature.State, HeroesListFeature.Action>) {
-        if let index = viewStore.heroes.firstIndex(where: { $0.id == hero.id }),
-           index >= viewStore.heroes.count - Constants.PaginationConfig.thresholdForLoadingMore {
-            viewStore.send(.loadMoreHeroes)
-        }
     }
 }
 

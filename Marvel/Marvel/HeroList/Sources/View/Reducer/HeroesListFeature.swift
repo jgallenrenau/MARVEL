@@ -23,6 +23,7 @@ struct HeroesListFeature: Reducer {
         case heroesLoadedSuccess([Hero])
         case heroesLoadedFailure(HeroesListError)
         case searchTextChanged(String)
+        case shouldLoadMoreHeroes(Hero)
     }
     
     enum HeroesListError: Error, Equatable {
@@ -97,7 +98,20 @@ struct HeroesListFeature: Reducer {
             state.searchText = searchText
             state.filteredHeroes = filterHeroes(state.heroes, by: searchText)
             return .none
+            
+        case let .shouldLoadMoreHeroes(hero):
+            if shouldLoadMoreHeroes(state: state, hero: hero) {
+                return .send(.loadMoreHeroes)
+            }
+            return .none
         }
+    }
+    
+    private func shouldLoadMoreHeroes(state: State, hero: Hero) -> Bool {
+        guard let index = state.heroes.firstIndex(where: { $0.id == hero.id }) else {
+            return false
+        }
+        return index >= state.heroes.count - Constants.PaginationConfig.thresholdForLoadingMore
     }
 }
 
