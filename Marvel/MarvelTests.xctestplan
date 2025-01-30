@@ -1,0 +1,53 @@
+{
+  "configurations" : [
+    {
+      "id" : "46FB1222-6268-480E-8478-2814F503CC93",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:Marvel.xcodeproj",
+        "identifier" : "14C0151C2D37F29900B19E03",
+        "name" : "MarvelTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Marvel\/Core",
+        "identifier" : "CoreTests",
+        "name" : "CoreTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Marvel\/DesignSystem",
+        "identifier" : "DesignSystemTests",
+        "name" : "DesignSystemTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Marvel\/HeroDetail",
+        "identifier" : "HeroDetailTests",
+        "name" : "HeroDetailTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Marvel\/HeroList",
+        "identifier" : "HeroListTests",
+        "name" : "HeroListTests"
+      }
+    }
+  ],
+  "version" : 1
+}
