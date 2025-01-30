@@ -1,4 +1,5 @@
-coverage_service: html
+ci_service: travis_ci
+coverage_service: coveralls
 xcodeproj: Marvel.xcodeproj
 source_directory: .
 ignore:
