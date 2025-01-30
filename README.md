@@ -6,6 +6,7 @@
 
 [![Swift](https://img.shields.io/badge/Swift-6.0-orange.svg)](https://swift.org)
 [![Xcode](https://img.shields.io/badge/Xcode-16.0-blue.svg)](https://developer.apple.com/xcode)
+![Coverage Status](https://coveralls.io/repos/github/jgallenrenau/Marvel/badge.svg?branch=develop)
 [![MIT](https://img.shields.io/badge/licenses-MIT-red.svg)](https://opensource.org/licenses/MIT)
 
 
