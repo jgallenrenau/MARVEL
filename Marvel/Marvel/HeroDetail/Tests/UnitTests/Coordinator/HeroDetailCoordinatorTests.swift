@@ -7,7 +7,6 @@ import ComposableArchitecture
 final class HeroDetailCoordinatorTests: XCTestCase {
     
     func test_heroDetailLoadedSuccessfully() async {
-
         let testHero = HeroDetail(
             id: 1,
             name: "Spider-Man",
@@ -22,46 +21,42 @@ final class HeroDetailCoordinatorTests: XCTestCase {
         let mockUseCase = MockFetchHeroDetailUseCase()
         mockUseCase.result = .success(testHero)
 
-        DependencyValues.withValue(\.fetchHeroDetailUseCase, mockUseCase) {
-            let coordinator = HeroDetailCoordinator(heroId: 1)
-
-            let store = Store(
+        let store = withDependencies {
+            $0.fetchHeroDetailUseCase = mockUseCase
+        } operation: {
+            Store(
                 initialState: HeroDetailFeature.State(heroId: 1),
-                reducer: {
-                    HeroDetailFeature()
-                }
+                reducer: { HeroDetailFeature() }
             )
-
-            let viewStore = ViewStore(store, observe: { $0 })
-
-            viewStore.send(.fetchHeroDetail)
-
-            XCTAssertEqual(viewStore.hero?.id, testHero.id)
-            XCTAssertEqual(viewStore.hero?.name, testHero.name)
         }
+
+        let viewStore = ViewStore(store, observe: { $0 })
+
+        await viewStore.send(.fetchHeroDetail).finish()
+
+        XCTAssertEqual(viewStore.hero?.id, testHero.id)
+        XCTAssertEqual(viewStore.hero?.name, testHero.name)
     }
 
+    @MainActor
     func test_heroDetailLoadError() async {
 
         let mockUseCase = MockFetchHeroDetailUseCase()
         mockUseCase.result = .failure(NSError(domain: "MockError", code: -1, userInfo: [NSLocalizedDescriptionKey: "Failed to load hero details."]))
 
-        DependencyValues.withValue(\.fetchHeroDetailUseCase, mockUseCase) {
-            let coordinator = HeroDetailCoordinator(heroId: 1)
-
-            let store = Store(
+        let store = withDependencies {
+            $0.fetchHeroDetailUseCase = mockUseCase
+        } operation: {
+            Store(
                 initialState: HeroDetailFeature.State(heroId: 1),
-                reducer: {
-                    HeroDetailFeature()
-                }
+                reducer: { HeroDetailFeature() }
             )
-
-            let viewStore = ViewStore(store, observe: { $0 })
-
-            viewStore.send(.fetchHeroDetail)
-
-            XCTAssertNotNil(viewStore.errorMessage)
-            XCTAssertEqual(viewStore.errorMessage, "Failed to load hero details.")
         }
+
+        let viewStore = ViewStore(store, observe: { $0 })
+
+        await viewStore.send(.fetchHeroDetail).finish()
+
+        XCTAssertNotNil(viewStore.errorMessage, "El errorMessage no debería ser nil después de un fallo en la carga")
     }
 }

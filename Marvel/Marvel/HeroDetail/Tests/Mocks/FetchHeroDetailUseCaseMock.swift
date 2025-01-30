@@ -1,14 +1,17 @@
 import Foundation
 @testable import HeroDetail
 
-struct FetchHeroDetailUseCaseMock: FetchHeroDetailUseCaseProtocol {
-    let heroDetail: HeroDetail
+final class FetchHeroDetailUseCaseMock: FetchHeroDetailUseCaseProtocol {
+    var result: Result<HeroDetail, HeroDetailFeature.HeroesDetailError>
 
-    init(heroDetail: HeroDetail) {
-        self.heroDetail = heroDetail
+    init(result: Result<HeroDetail, HeroDetailFeature.HeroesDetailError>) {
+        self.result = result
     }
 
     func execute(characterId: Int) async throws -> HeroDetail {
-        return heroDetail
+        switch result {
+        case .success(let hero): return hero
+        case .failure(let error): throw error
+        }
     }
 }

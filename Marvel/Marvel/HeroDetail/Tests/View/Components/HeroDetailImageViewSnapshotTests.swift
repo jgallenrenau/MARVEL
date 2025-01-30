@@ -32,12 +32,15 @@ final class HeroDetailImageViewSnapshotTests: XCTestCase {
     }
 
     private func captureSnapshots(for view: some View, named: String) {
-        for (deviceName, config) in devices {
-            assertSnapshot(
-                of: view,
-                as: .image(layout: .device(config: config)),
-                named: "\(named)_\(deviceName)"
-            )
+        
+        withSnapshotTesting(record: false) {
+            for (deviceName, config) in devices {
+                assertSnapshot(
+                    of: view,
+                    as: .image(layout: .device(config: config)),
+                    named: "\(named)_\(deviceName)"
+                )
+            }
         }
     }
 }

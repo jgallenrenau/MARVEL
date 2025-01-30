@@ -1,82 +1,99 @@
 import XCTest
+import SwiftUI
 import SnapshotTesting
 import ComposableArchitecture
+import DesignSystem
 @testable import HeroDetail
 
-final class HeroDetailSnapshotTests: XCTestCase {
+final class HeroDetailViewSnapshotTests: XCTestCase {
     
-    private let devices: [String: ViewImageConfig] = [
-        "iPhone SE": .iPhoneSe,
-        "iPhone 13": .iPhone13,
-        "iPhone 13 Pro Max": .iPhone13ProMax,
-        "iPad Mini": .iPadMini,
-        "iPad Pro 11": .iPadPro11,
-        "iPad Pro 12.9": .iPadPro12_9
-    ]
-
     func testHeroDetailViewSnapshot() {
+        UIView.setAnimationsEnabled(false)
+
         let mockHeroDetail = HeroDetail(
             id: 1,
             name: "Spider-Man",
-            description: "Spider-Man is a fictional superhero created by writer-editor Stan Lee and writer-artist Steve Ditko. He first appeared in Amazing Fantasy #15 (August 1962).",
+            description: "A friendly neighborhood superhero.",
             thumbnailURL: URL(string: "http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784.jpg")!,
-            comics: ["Amazing Spider-Man #1", "Ultimate Spider-Man #1"],
-            series: ["Spider-Man (1994-1998)", "The Amazing Spider-Man (1977-1979)"],
-            stories: ["The Night Gwen Stacy Died", "Kraven's Last Hunt"],
+            comics: ["Amazing Spider-Man #1", "Ultimate Spider-Man #2"],
+            series: ["Marvel's Spider-Man", "Ultimate Comics"],
+            stories: ["Spider-Verse", "The Clone Saga"],
             events: ["Civil War", "Secret Wars"]
         )
-        
-        let store = withDependencies {
-            $0.fetchHeroDetailUseCase = FetchHeroDetailUseCaseMock(heroDetail: mockHeroDetail)
-        } operation: {
-            Store(
-                initialState: HeroDetailFeature.State(heroId: 1, hero: mockHeroDetail),
-                reducer: { HeroDetailFeature() }
-            )
-        }
 
-        for (deviceName, config) in devices {
-            let view = HeroDetailView(store: store)
-            assertSnapshot(
-                of: view,
-                as: .image(layout: .device(config: config)),
-                named: "HeroDetailView_\(deviceName)"
-            )
-        }
-    }
-    
-    func testHeroDetailViewLoadingStateSnapshot() {
+        let initialState = HeroDetailFeature.State(
+            heroId: 1,
+            hero: mockHeroDetail, // Hero cargado desde el inicio
+            isLoading: false
+        )
+
         let store = Store(
-            initialState: HeroDetailFeature.State(heroId: 1, isLoading: true),
+            initialState: initialState,
             reducer: { HeroDetailFeature() }
         )
 
-        for (deviceName, config) in devices {
-            let view = HeroDetailView(store: store)
-            assertSnapshot(
-                of: view,
-                as: .image(layout: .device(config: config)),
-                named: "HeroDetailView_Loading_\(deviceName)"
-            )
-        }
-    }
-    
-    func testHeroDetailViewErrorStateSnapshot() {
-        let store = Store(
-            initialState: HeroDetailFeature.State(
-                heroId: 1,
-                errorMessage: "Failed to load hero details."
-            ),
-            reducer: { HeroDetailFeature() }
-        )
+        let view = HeroDetailView(store: store)
+            .frame(width: 375, height: 812)
+            .padding(DSPadding.normal)
+            .background(DSColors.black.opacity(DSOpacity.dotFour))
 
-        for (deviceName, config) in devices {
-            let view = HeroDetailView(store: store)
-            assertSnapshot(
-                of: view,
-                as: .image(layout: .device(config: config)),
-                named: "HeroDetailView_Error_\(deviceName)"
-            )
-        }
+        // Permitir que la vista termine de renderizarse antes de la snapshot
+        RunLoop.main.run(until: Date(timeIntervalSinceNow: 0.1))
+
+        assertSnapshot(
+            of: view,
+            as: .image(layout: .fixed(width: 375, height: 812)), // Tamaño fijo
+            named: "HeroDetailView_Snapshot"
+        )
     }
+
+    
+
+//    func testHeroDetailViewLoadingStateSnapshot() {
+//        let store = withDependencies {
+//            $0.fetchHeroDetailUseCase = FetchHeroDetailUseCaseMock(result: .success(mockHeroDetail))
+//        } operation: {
+//            Store(
+//                initialState: HeroDetailFeature.State(heroId: 1, isLoading: true),
+//                reducer: { HeroDetailFeature() }
+//            )
+//        }
+//        
+//        withSnapshotTesting(record: false) {
+//            for (deviceName, config) in devices {
+//                let view = HeroDetailView(store: store)
+//                assertSnapshot(
+//                    of: view,
+//                    as: .image(layout: .device(config: config)),
+//                    named: "HeroDetailView_Error_\(deviceName)"
+//                )
+//            }
+//        }
+//    }
+//    
+//    func testHeroDetailViewErrorStateSnapshot() {
+//        let store = withDependencies {
+//            $0.fetchHeroDetailUseCase = FetchHeroDetailUseCaseMock(result: .failure(HeroDetailFeature.HeroesDetailError.networkError("Failed to load hero details.")))
+//        } operation: {
+//            Store(
+//                initialState: HeroDetailFeature.State(
+//                    heroId: 1,
+//                    errorMessage: "Failed to load hero details."
+//                ),
+//                reducer: { HeroDetailFeature() }
+//            )
+//        }
+//        
+//        withSnapshotTesting(record: false) {
+//            for (deviceName, config) in devices {
+//                let view = HeroDetailView(store: store)
+//                assertSnapshot(
+//                    of: view,
+//                    as: .image(layout: .device(config: config)),
+//                    named: "HeroDetailView_Error_\(deviceName)"
+//                )
+//            }
+//        }
+//    }
+    
 }

@@ -29,6 +29,7 @@ final class HeroesListFeatureTests: XCTestCase {
         await store.receive(.heroesLoadedSuccess(testHeroes)) {
             $0.isLoading = false
             $0.heroes = testHeroes
+            $0.filteredHeroes = testHeroes
         }
     }
     
@@ -60,6 +61,7 @@ final class HeroesListFeatureTests: XCTestCase {
         await store.receive(.heroesLoadedSuccess(newHeroes)) {
             $0.isLoading = false
             $0.heroes = initialHeroes + newHeroes
+            $0.filteredHeroes = initialHeroes + newHeroes
         }
     }
 
@@ -88,6 +90,8 @@ final class HeroesListFeatureTests: XCTestCase {
         await store.receive(.heroesLoadedSuccess([])) {
             $0.isLoading = false
             $0.hasMoreHeroes = false
+            $0.filteredHeroes = initialHeroes
         }
     }
 }
+
