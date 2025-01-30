@@ -9,12 +9,6 @@ final class HeroListCoordinatorTests: XCTestCase {
     func test_onHeroSelectedIsCalled() async {
         let testHero = Hero(id: 1, name: "Spider-Man", description: "Hero", thumbnailURL: URL(string: "http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784.jpg")!)
 
-        var selectedHero: Hero?
-
-        let coordinator = HeroListCoordinator { hero in
-            selectedHero = hero
-        }
-
         let store = Store(
             initialState: HeroesListFeature.State(heroes: [testHero]),
             reducer: {
@@ -23,8 +17,7 @@ final class HeroListCoordinatorTests: XCTestCase {
             }
         )
 
-        _ = HeroesListView(store: store, onHeroSelected: { hero in
-            selectedHero = hero
+        _ = HeroesListView(store: store, onHeroSelected: { _ in
         })
 
         let viewStore = ViewStore(store, observe: { $0 })
